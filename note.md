@@ -3,7 +3,7 @@
 
 1. [contains duplicate(查找重复数据)](#table1)
 2. [Valid Anagram 有效异序](#table2)
-3. 
+3. [Two Sum 两数之和](#table3)
 
 ### <a id= "table1"> 1. contains duplicate(查找重复数据) </a>
 
@@ -121,5 +121,70 @@ str = list(s)
 s.sort()
 ```
 
-**HashMap** 现在也有sort，所以也可以用这个方法。
+**HashMap** 
+**C++**
+1. 确认string长度相同（不同则false）
+2. 建立一个vector，index为dict，用来查找对应的element
+3. 利用Ascii表作为index，也就是用Ascii的数字来做为和vector第一列的对比。
+4. 然后记录下每个element出现的次数
+   
+```c++
+bool isAnagram(string s, string t){
+    if(s.size() != t.size())
+        return false;
+    
+    // 初始化26个为0的element的vector数组。
+    vector<int> table(26,0);
+
+    for(auto& i : s){
+        // i是s传递进来的单项element，作为index，自动以Ascii数字处理
+        // - ‘a’ 是用来把出现的数字结果统一，并且和index相匹配
+        // 举例 i = a，Ascii a = 40，40-40 = 0. vector内index 0 = a
+        // 这样可以找出每个字母出现的次数。
+        table[i - 'a']++;
+    }
+
+    for(auto& i : t){
+        table[i - 'a'];
+        if(table[i - 'a'] < 0)
+            return false;
+    }
+
+    return true;
+}
+```
+
+**Python**
+1. 确认element数量，不同则返回false
+2. 建立两个dict计数器
+3. 遍历两个数组，用char作为dict的key，记录每个char出现的次数
+4. 对比两个计数器，不同则false
+   
+```python
+def isAnagram(self, s : str, t : str) -> bool:
+    if(len(s) != len(t)):
+        return False
+    # 建立dict计数器
+    countS, countT = {},{}
+
+    for i in range(len(s)):
+        # countS[s[i]]是用s内的element作为key
+        # countS.get(s[i],o), 
+        countS[s[i]] = 1 + countS.get(s[i],0)
+        countT[t[i]] = 1 + countT.get(t[i],0)
+
+    for c in countS:
+        if countS[c] != countT.get(c,0)
+            return False
+    
+    return True
+
+
+# Python 内置以上算法
+    Counter(s) != Counter(t) #这个就是对比array内element是否相同的算法。
+```
+
+
+### <a id = 'table3'> 3. Two Sum 两数之和 </a>
+
 
