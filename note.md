@@ -7,9 +7,12 @@
 
 ### <a id= "table1"> 1. contains duplicate(查找重复数据) </a>
 
-利用hashset，建立一个set，然后遍历array来确认是否有重复内容
+Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
 
-python
+**解题思路：** 利用hashset，建立一个set，然后遍历array来确认是否有重复内容
+
+**Python**
+
 ``` python
 def containsDuplicate(self, nums:List[int]) -> bool:
     hashset = set() //set() 在python中有去重特性，所以不会储存重复数据，减少内容太多而产生的不必要储存
@@ -23,6 +26,7 @@ def containsDuplicate(self, nums:List[int]) -> bool:
 ```
 
 **C++排序法**
+
 ```C++
 bool containsDuplicate(vector<int>& nums){
     sort(nums.begin(),nums.end()); //对数组进行排序
@@ -39,6 +43,7 @@ bool containsDuplicate(vector<int>& nums){
 ```
 
 **C++查重法**
+
 ```C++
 bool containsDuplicate(vector<int>& nums){
     //unordered_set 是不排序set在C++中的定义名
@@ -57,6 +62,7 @@ bool containsDuplicate(vector<int>& nums){
 ```
 
 **Java**
+
 ```java
     public boolean containsDuplicate(int[] nums) {
         // 创建hashset
@@ -110,11 +116,12 @@ sites.size() // set大小，注意Set没有重复元素
 
 ### <a id="table2"> 2. Valid Anagram 有效异序 </a>
 
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
 确认两个无需的数组是否包含相同的element。
 
-**Sort 方法**比较简单。先对比两个数组的长度是否相同，如果不同直接false。
-再将两个数组排序，然后对比两个数组是否相同，返回bool值
-**注意** Python的str没有sort功能，需要将str转为list
+**解题思路：** `sort()`方法，比较简单。先对比两个数组的长度是否相同，如果不同直接false。
+再将两个数组排序，然后对比两个数组是否相同，返回bool值. **注意** Python的str没有sort功能，需要将str转为list
 
 ```python
 str = list(s)
@@ -123,6 +130,7 @@ s.sort()
 
 **HashMap** 
 **C++**
+
 1. 确认string长度相同（不同则false）
 2. 建立一个vector，index为dict，用来查找对应的element
 3. 利用Ascii表作为index，也就是用Ascii的数字来做为和vector第一列的对比。
@@ -155,6 +163,7 @@ bool isAnagram(string s, string t){
 ```
 
 **Python**
+
 1. 确认element数量，不同则返回false
 2. 建立两个dict计数器
 3. 遍历两个数组，用char作为dict的key，记录每个char出现的次数
