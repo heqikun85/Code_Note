@@ -4,6 +4,9 @@
 1. [contains duplicate(查找重复数据)](#table1)
 2. [Valid Anagram 有效异序](#table2)
 3. [Two Sum 两数之和](#table3)
+4. d
+5. [Top K frequent elements 最常见元素](#table5)
+6. [Product of Array Except Self 阵列乘积](#table6)
 
 ### <a id= "table1"> 1. contains duplicate(查找重复数据) </a>
 
@@ -195,5 +198,62 @@ def isAnagram(self, s : str, t : str) -> bool:
 
 
 ### <a id = 'table3'> 3. Two Sum 两数之和 </a>
+
+
+
+
+
+
+### <a id="table5">5. Top K frequent elements 最常见元素 </a>
+
+Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
+给到一个频率数字，找出出现频率最高的K个数字。
+
+**解题思路：** 
+1. 先用dict储存每个element的出现频率。
+2. 创建一个和给定数组一样大小的2d数组（其index就和出现频率一样）
+3. 将dict内的val -> freq 键值对传入2d数组
+4. 从后遍历freq数组，因为index越大，出现频率越大。
+5. 逐步加入freq内的内容去数组，一旦数组大小等于给定数字，就返回现有值。 
+
+```python
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        
+        count = {} # 初始化dict
+        # 初始化freq List，该list为一个len大于传入List的2D array
+        freq = [[]for i in range(len(nums) + 1)]
+        
+        # 统计每个element的频率，记录在dict内，频率为value，element为Key
+        for i in nums:
+            # i为nums内的单个element，count.get(获取值，默认值)方法获取count[i]的值
+            # 如果为空，则返回默认值 0
+            count[i] = 1 + count.get(i,0)
+        
+        # item()方法返回key，value的键值对，n取key，c取value。
+        for n, c in count.items():
+            # 因为freq的index和频率对应，所以可以以此来sort整个出现频率
+            freq[c].append(n)
+       
+        res = []
+        # 重后往前遍历数组，出现频率越高的index越大，一旦res中长度与K相等，则返回K
+        for i in range(len(freq)-1, 0, -1):
+            for n in freq[i]:
+                res.append(n)
+        return freq
+        # return the k required num value
+```
+
+Python的range(start, stop, step)
+start: 计数从 start 开始。默认是从 0 开始。例如range（5）等价于range（0， 5）;
+stop: 计数到 stop 结束，但不包括 stop。例如：range（0， 5） 是[0, 1, 2, 3, 4]没有5
+step：步长，默认为1。例如：range（0， 5） 等价于 range(0, 5, 1)
+
+
+
+### <a id='table6'> 6. Product of Array Except Self 阵列乘积 </a>
+
+Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+You must write an algorithm that runs in O(n) time and without using the division operation.
 
 
