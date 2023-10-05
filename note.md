@@ -4,7 +4,7 @@
 1. [contains duplicate(查找重复数据)](#table1)
 2. [Valid Anagram 有效异序](#table2)
 3. [Two Sum 两数之和](#table3)
-4. d
+4. [Group Anagrams 组合词根](#table4)
 5. [Top K frequent elements 最常见元素](#table5)
 6. [Product of Array Except Self 阵列乘积](#table6)
 
@@ -199,7 +199,209 @@ def isAnagram(self, s : str, t : str) -> bool:
 
 ### <a id = 'table3'> 3. Two Sum 两数之和 </a>
 
+给定一个数字array，给定一个目标结果，然后找出array中求和结果等于目标结果的两个数字的index。
 
+Example 1:
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+
+**解题思路**
+
+逻辑上，这个代码只能通过遍历的方式，也就是将每个element与其他element相加。普通情况下会用到两个loop双循环。但双循环就会出现O(n^2)的高运算消耗。
+但我们可以通过创建一个dict，通过将element作为Key，来寻找index。
+
+```python
+    def twoSum(self, nums: list[int], target : int) -> list[int]:
+        maps ={} #初始化一个dict val -> index
+        # 通过enumerate()方法把element和迭代器储存为 val -> index 的dict pair
+        for i , n in enumerate(nums):
+            diff = target - n # 将目标结果和element相间，获得符合target的另一个数
+            if diff in maps:
+                return [maps[diff], i]
+            maps[n] = i
+```
+```python
+# enumerate返回一个迭代器，其中包含原始可迭代对象中的index和element pair
+enumerate(iterable, start=0) 
+
+# 实例
+l1 = ["eat", "sleep", "repeat"]
+s1 = "geek"
+ 
+# creating enumerate objects
+obj1 = enumerate(l1)
+obj2 = enumerate(s1)
+ 
+print ("Return type:", type(obj1)) # 返回类型：<class 'enumerate'> 
+print (list(enumerate(l1))) # [(0, 'eat'), (1, 'sleep'), (2, 'repeat')]
+ 
+# changing start index to 2 from 0
+print (list(enumerate(s1, 2))) # [(2, 'g'), (3, 'e'), (4, 'e'), (5, 'k')]
+```
+
+**Java**
+
+```java
+    public int[] twoSum(int[] nums, int target) {
+        // 初始化hashmap
+        HashMap <Integer, Integer> maps = new HashMap<>();
+        
+        // 遍历传入数组
+        for(int i = 0; i < nums.length; i++){
+            int num = nums[i]; // 这行其实可以不用，主要防止可能对传入数组的错误操作
+            int diff = target - num;
+            // 确认key值是否相匹配, containsKey()方法
+            if(maps.containsKey(diff)){
+                return new int [] { maps.get(diff), i };
+            }
+            maps.put(num, i);
+        }
+        return new int [] {};
+    }
+```
+
+**C++**
+
+```c++
+    public:
+        vector<int> twoSum(vector<int>& nums, int target) {
+            // 初始化hashmap
+            unordered_map<int, int> mp; // val -> index
+            
+            //遍历数组
+            for (int i = 0; i < nums.size(); i++) {
+                //
+                int diff = target - nums[i];
+                if (mp.find(diff) != mp.end()) {
+                    return {mp[diff], i};
+                }
+                mp.insert({nums[i], i});
+            }
+            return {};
+        }
+```
+
+### <a id= 'table4'> 4. Group Anagrams 组合词根 </a>
+
+给到一个string array，把相同element的string储存在一起。
+
+**解体思路**
+
+创建2D的List，并且创建一个hashmap来储存并对比每个string包含的字符。将val作为key
+
+```c++
+public: 
+    vector<vector<string>> groupAnagrams(vector<string>& strs){
+        // 创建一个hashmap，储存string的array，每个array是相同字符串的element，所以是2维数组
+        unordered_map<string, vector<string>> m;
+        // 遍历str array
+        for(int i = 0; i < strs.size(); i++){
+            // 获取单个string中各个字符出现的次数
+            string key = getKey(strs[i]);
+            // 以字符出现次数为key，将string储存进map
+            m[key].push_back(strs[i]);
+        }
+
+        vector<vector<string>> result;
+        for(auto it = m.begin(); it != m.end(); it++){
+            result.push_back(it->second);
+        }
+        return result;
+    }
+
+private:
+    // 这个是getKey()函数，类似于第二题对比两个string是否罕有相同字符。
+    string getKey(string str){
+        // 初始化一个包含26个字母的array，以index为顺序，0 = a 以此类推
+        vector<int> count(26);
+
+        // 遍历传入的string，将string中单个char所对应的index的count ++ 
+        for(int i = 0; i < str.size(); i++){
+            count[str[i] - 'a']++;
+        }
+
+        string key ="";
+        // 将整个count中的计数器以string的形式copy并传出
+        for(int j = 0; j < count.size(); j++){
+            // 不加‘#’会错,因为如果只用数字表示会出现一个情况
+            // 10个d和10个b也会出现10的数字，不用＃隔开会导致特殊情况（不同字符但数字排列相同的情况）
+            key.append(to_string(count[j]) + '#');  
+        }
+        return key;
+    }
+
+```
+
+```java
+    public List<List<String>> groupAnagrams(String[] strs) {
+        //创建一个2D数组的List，使用ArrayList模式，动态数组。
+        List<List<String>> res = new ArrayList<>(); 
+        if(strs.length == 0) return res; // 如果传入的是一个空数组，则直接返回空Array
+        //创建一个包含数组的hashmap，key为包含的字符，value为与key的字符相同的单词。
+        HashMap<String, List<String>> map = new HashMap<>();
+        for(String s : strs){
+            //建立一个26个字母的hash表
+            char[] hash = new char[26];
+            //遍历单个单词中的字母，
+            for(char c : s.toCharArray()){
+                hash[c-'a']++; //以26个字母的顺序作为index，利用ASCii的特性在index内进行计算
+            }
+            // 将储存了26个字母分别使用了几个的hash储存为新的string，
+            //举例：eat会储存为10001000000000000000100000，
+            //代表第一个字母，第五个字母，第21个字母使用了1次。
+            String key = new String(hash); 
+            
+            //通过key确认是否存在在map中，如果不在map中，则新建这个key的动态数组项
+            map.computeIfAbsent(key, k -> new ArrayList<>());
+            //在已有该key的情况下，在该key下加入s。
+            map.get(key).add(s);
+        }
+        //将map这个2d数组里的value全部储存到res内，其实可以只返回map的value，不用多建立一个res
+        res.addAll(map.values());
+        return res;
+    }
+```
+
+```python
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        ans = collections.defaultdict(list)
+
+        for s in strs:
+            count = [0] * 26
+            for c in s:
+                count[ord(c) - ord("a")] += 1
+            ans[tuple(count)].append(s)
+        return ans.values()
+```
+
+ord() 函数是 chr() 函数（对于8位的ASCII字符串）或 unichr() 函数（对于Unicode对象）的配对函数，它以一个字符（长度为1的字符串）作为参数，返回对应的 ASCII 数值，或者 Unicode 数值，如果所给的 Unicode 字符超出了你的 Python 定义范围，则会引发一个 TypeError 的异常。
+
+**python学习笔记：collections.defaultdict()的用法**
+
+在我们创建一个字典时，必须同时填入“键值对”。如果没有值填入，就会发生keyerror的错误。
+
+```python 
+res = dict()
+res['key']
+print(res)
+>>KeyError: 'key'
+
+res = dict()
+res['key'] = 3
+print(res)
+>>{'key': 3}
+```
+用collections.defaultdict(“值的类型”)，一种特殊类型的字典本身就保存了默认值defaultdict()。
+```python
+from collections import defaultdict
+
+res = defaultdict(list)
+res['key']
+print(res)
+>>defaultdict(<class 'list'>, {'key': []})
+```
 
 
 
