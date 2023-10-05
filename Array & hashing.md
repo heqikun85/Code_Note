@@ -212,6 +212,7 @@ Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 逻辑上，这个代码只能通过遍历的方式，也就是将每个element与其他element相加。普通情况下会用到两个loop双循环。但双循环就会出现O(n^2)的高运算消耗。
 但我们可以通过创建一个dict，通过将element作为Key，来寻找index。
 
+**Python**
 ```python
     def twoSum(self, nums: list[int], target : int) -> list[int]:
         maps ={} #初始化一个dict val -> index
@@ -222,6 +223,8 @@ Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
                 return [maps[diff], i]
             maps[n] = i
 ```
+
+**python学习笔记：enumerate()方法**
 ```python
 # enumerate返回一个迭代器，其中包含原始可迭代对象中的index和element pair
 enumerate(iterable, start=0) 
@@ -230,7 +233,7 @@ enumerate(iterable, start=0)
 l1 = ["eat", "sleep", "repeat"]
 s1 = "geek"
  
-# creating enumerate objects
+# Creating enumerate objects
 obj1 = enumerate(l1)
 obj2 = enumerate(s1)
  
@@ -291,6 +294,8 @@ print (list(enumerate(s1, 2))) # [(2, 'g'), (3, 'e'), (4, 'e'), (5, 'k')]
 
 创建2D的List，并且创建一个hashmap来储存并对比每个string包含的字符。将val作为key
 
+**C++**
+
 ```c++
 public: 
     vector<vector<string>> groupAnagrams(vector<string>& strs){
@@ -334,6 +339,8 @@ private:
 
 ```
 
+**Java**
+
 ```java
     public List<List<String>> groupAnagrams(String[] strs) {
         //创建一个2D数组的List，使用ArrayList模式，动态数组。
@@ -363,6 +370,8 @@ private:
         return res;
     }
 ```
+
+**Python**
 
 ```python
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
@@ -402,8 +411,6 @@ res['key']
 print(res)
 >>defaultdict(<class 'list'>, {'key': []})
 ```
-
-
 
 
 ### <a id="table5">5. Top K frequent elements 最常见元素 </a>
