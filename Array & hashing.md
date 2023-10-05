@@ -425,6 +425,8 @@ Given an integer array nums and an integer k, return the k most frequent element
 4. 从后遍历freq数组，因为index越大，出现频率越大。
 5. 逐步加入freq内的内容去数组，一旦数组大小等于给定数字，就返回现有值。 
 
+**Python**
+
 ```python
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         
