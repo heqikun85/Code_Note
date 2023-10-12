@@ -104,13 +104,12 @@ public class RunoobTest {
     }
 }
 ```
-执行以上代码，输出结果如下：
-
-[Google, Runoob, Zhihu, Taobao]
+执行以上代码，输出结果如下：``[Google, Runoob, Zhihu, Taobao]``
 
 **删除元素**
 
 我们可以使用 remove() 方法来删除集合中的元素:
+
 ```java
 sites.remove("Taobao");  // 删除元素，删除成功返回 true，否则为 false
 sites.clear() // 删除所有元素
@@ -120,10 +119,13 @@ sites.size() // set大小，注意Set没有重复元素
 ### <a id="table2"> 2. Valid Anagram 有效异序 </a>
 
 Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
 An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
 确认两个无需的数组是否包含相同的element。
 
 **解题思路：** `sort()`方法，比较简单。先对比两个数组的长度是否相同，如果不同直接false。
+
 再将两个数组排序，然后对比两个数组是否相同，返回bool值. **注意** Python的str没有sort功能，需要将str转为list
 
 ```python
@@ -131,8 +133,7 @@ str = list(s)
 s.sort()
 ```
 
-**HashMap** 
-**C++**
+**C++ HashMap**
 
 1. 确认string长度相同（不同则false）
 2. 建立一个vector，index为dict，用来查找对应的element
@@ -190,11 +191,11 @@ def isAnagram(self, s : str, t : str) -> bool:
             return False
     
     return True
-
-
-# Python 内置以上算法
-    Counter(s) != Counter(t) #这个就是对比array内element是否相同的算法。
 ```
+
+# Python 内置以上算法 
+ ``Counter(s) != Counter(t) #这个就是对比array内element是否相同的算法。``
+
 
 
 ### <a id = 'table3'> 3. Two Sum 两数之和 </a>
@@ -204,15 +205,19 @@ def isAnagram(self, s : str, t : str) -> bool:
 Example 1:
 
 Input: nums = [2,7,11,15], target = 9
+
 Output: [0,1]
+
 Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 
 **解题思路**
 
 逻辑上，这个代码只能通过遍历的方式，也就是将每个element与其他element相加。普通情况下会用到两个loop双循环。但双循环就会出现O(n^2)的高运算消耗。
+
 但我们可以通过创建一个dict，通过将element作为Key，来寻找index。
 
 **Python**
+
 ```python
     def twoSum(self, nums: list[int], target : int) -> list[int]:
         maps ={} #初始化一个dict val -> index
@@ -403,6 +408,7 @@ print(res)
 >>{'key': 3}
 ```
 用collections.defaultdict(“值的类型”)，一种特殊类型的字典本身就保存了默认值defaultdict()。
+
 ```python
 from collections import defaultdict
 
@@ -416,6 +422,7 @@ print(res)
 ### <a id="table5">5. Top K frequent elements 最常见元素 </a>
 
 Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
+
 给到一个频率数字，找出出现频率最高的K个数字。
 
 **解题思路：** 
@@ -455,8 +462,11 @@ Given an integer array nums and an integer k, return the k most frequent element
 ```
 
 Python的range(start, stop, step)
+
 start: 计数从 start 开始。默认是从 0 开始。例如range（5）等价于range（0， 5）;
+
 stop: 计数到 stop 结束，但不包括 stop。例如：range（0， 5） 是[0, 1, 2, 3, 4]没有5
+
 step：步长，默认为1。例如：range（0， 5） 等价于 range(0, 5, 1)
 
 **C++**
@@ -494,8 +504,8 @@ public:
     }
 ```
 
-greater用法:
-greater 是用于执行比较的功能对象。该方法在 ``#include <functional.h>``
+greater用法: greater 是用于执行比较的功能对象。该方法在 ``#include <functional.h>``
+
 模板类别：``template <class T> struct greater;``, 参数 T 是要通过函数调用进行比较的参数类型。返回bool，如果 a > b 返回 true， a < b 返回 false
 
 在``sort()``方法中：
@@ -510,8 +520,8 @@ sort(arr.begin(), arr.end(), greater<int>());
     priority_queue<int, vector<int>, greater<int>> // 升序队列
 ```
 
-priority_queue用法：
-该方法在 ``include <queue>``, 和queue不同的在于可以自动逸其中数据的优先级，让优先级高的排在队列前面。
+priority_queue用法：该方法在 ``include <queue>``, 和queue不同的在于可以自动逸其中数据的优先级，让优先级高的排在队列前面。
+
 和队列基本此操作相同：
    * top 访问队头元素
    * empty 队列是否为空
@@ -520,8 +530,11 @@ priority_queue用法：
    * emplace 原地构造一个元素并插入队列
    * pop 弹出队头元素
    * swap 交换内容
+
 定义方式：``priority_queue<Type, container, functional>``
-type就是数据类型，container就是容器类型（container必须是用数组实现的容器，比如vector,deque等，但不能用list。）functional是比较方式。
+1. type就是数据类型
+2. container就是容器类型（container必须是用数组实现的容器，比如vector,deque等，但不能用list。）
+3. functional是比较方式。
 
 
 Time: O(n)
