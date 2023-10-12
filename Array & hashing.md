@@ -459,6 +459,108 @@ start: 计数从 start 开始。默认是从 0 开始。例如range（5）等价
 stop: 计数到 stop 结束，但不包括 stop。例如：range（0， 5） 是[0, 1, 2, 3, 4]没有5
 step：步长，默认为1。例如：range（0， 5） 等价于 range(0, 5, 1)
 
+**C++**
+
+该算法使用hash map的方法，Time：O(n log k), space: O(n + k)
+
+```C++
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k){
+        // 创建一个hash map，包含2D数组，element为int
+        unordered_map<int, int> m;
+        // nums[i]作为index，每个element对应的index出现次数为储存次数
+        for(int i = 0; i < nums.size(); i++){
+            m[nums[i]]++;
+        }
+        // 创建一个规则为从小到大升序的queue
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        // 遍历之前的hash map，通过hash map储存的element -> frequent, 以frequent -> element的形式转存，并以frequent的大小，从小到大复制m
+        // 并且queue的大小不大于k的大小。
+        for(auto it = m.begin(), it != m.end(); it++){
+            pq.push({it->second, it->first});
+            if(pq.size() > k) {
+                pq.pop();
+            }
+        }
+        
+        vector<int> result;
+        
+        while(!pq.empty()){
+            result.push_back(pq.top().second);
+            pq.pop();
+        }
+
+        return result;
+    }
+```
+
+greater用法:
+greater 是用于执行比较的功能对象。该方法在 ``#include <functional.h>``
+模板类别：``template <class T> struct greater;``, 参数 T 是要通过函数调用进行比较的参数类型。返回bool，如果 a > b 返回 true， a < b 返回 false
+
+在``sort()``方法中：
+```c++
+sort(arr.begin(), arr.end(), greater<int>());
+```
+
+在``priority_queue()``方法中：
+```c++
+    priority_queue<int> // 默认降序队列，大顶堆
+    priority_queue<int, vector<int>, less<int>> // 降序队列
+    priority_queue<int, vector<int>, greater<int>> // 升序队列
+```
+
+priority_queue用法：
+该方法在 ``include <queue>``, 和queue不同的在于可以自动逸其中数据的优先级，让优先级高的排在队列前面。
+和队列基本此操作相同：
+   * top 访问队头元素
+   * empty 队列是否为空
+   * size 返回队列内元素个数
+   * push 插入元素到队尾
+   * emplace 原地构造一个元素并插入队列
+   * pop 弹出队头元素
+   * swap 交换内容
+定义方式：``priority_queue<Type, container, functional>``
+type就是数据类型，container就是容器类型（container必须是用数组实现的容器，比如vector,deque等，但不能用list。）functional是比较方式。
+
+
+Time: O(n)
+Space: O(n)
+```c++
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k){
+        int n = nums.size();
+
+        unordered_map<int, int> m;
+        for(int i = 0; i < n; i++){
+            m[nums[i]];
+        }
+
+        vector<vector<int>> buckets(n + 1);
+        for (auto it = m.begin(); it != m.end(); it++){
+            buckets[it->second].push_back(it->first);
+        }
+
+        vector<int> result;
+
+        for(int i = n; i >= 0; i--){
+            if(result.size() >= k){
+                break;
+            }
+            if(!buckets[i].empty()){
+                result.insert(result.end(), buckets[i].begin(),buckets[i].end());
+            }
+        }
+
+        return result;
+    }
+```
+
+**Java**
+
+```java
+
+```
 
 
 ### <a id='table6'> 6. Product of Array Except Self 阵列乘积 </a>
