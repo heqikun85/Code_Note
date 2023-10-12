@@ -193,7 +193,7 @@ def isAnagram(self, s : str, t : str) -> bool:
     return True
 ```
 
-# Python 内置以上算法 
+### Python 内置以上算法 
  ``Counter(s) != Counter(t) #这个就是对比array内element是否相同的算法。``
 
 
