@@ -581,5 +581,68 @@ public:
 Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
 The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
 You must write an algorithm that runs in O(n) time and without using the division operation.
+给定一个整数数组 nums，返回一个数组 answer，使得 answer[i] 等于 nums 中除 nums[i] 以外所有元素的乘积。
+nums 的任何前缀或后缀的乘积都保证适合 32 位整数。
+您必须在不使用除法运算的情况下，编写一个运行时间为 O(n) 的算法。
 
+Example 1:
 
+Input: nums = [1,2,3,4]
+Output: [24,12,8,6]
+Example 2:
+
+Input: nums = [-1,1,0,-3,3]
+Output: [0,0,9,0,0]
+
+**Python**
+
+```python
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        # 创建长度和传入数组长度相同的List
+        res = [1]*(len(nums))
+
+        # 从index 1开始遍历List
+        for i in range(1, len(nums)):
+            # 将index左边的乘积相乘
+            res[i] = res[i - 1] * nums[i - 1]
+        posfix = 1
+        # 将index右边的乘积相乘
+        for i in range(len(nums)-1, -1, -1):
+            res[i] *= posfix
+            posfix *= nums[i]
+        return res
+```
+
+**Java**
+
+```java
+// 第一种写法
+    public int[] productExceptSelf(int[] nums) {
+        int[] arr = new int[nums.length];
+        int right = 1, left = 1;
+        for(int i = 1, i < nums.length; i++){
+            arr[i] = left;
+            left *= nums[i];
+        }
+
+        for(int i = nums.length - 1; i >= 0; i--){
+            arr[i] *= right;
+            right *= nums[i];
+        }
+        return arr;
+}
+
+// 第二种写法
+    public int[] productExceptSelfNumsAsPrefix(int[] nums) {
+        int[] output = new int[nums.length];
+        output[0] = 1;
+
+        for (int i = 0; i < nums.length - 1; i++) output[i + 1] =
+            output[i] * nums[i];
+
+        for (int i = nums.length - 2; i >= 0; i--) {
+            output[i] = nums[i + 1] * output[i];
+            nums[i] = nums[i] * nums[i + 1];
+        }
+        return output;
+```
