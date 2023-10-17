@@ -7,6 +7,7 @@
 4. [Group Anagrams 组合词根](#table4)
 5. [Top K frequent elements 最常见元素](#table5)
 6. [Product of Array Except Self 阵列乘积](#table6)
+7. [Longest Consecutive Sequence](#table7)
 
 ### <a id= "table1"> 1. contains duplicate(查找重复数据) </a>
 
@@ -646,3 +647,75 @@ Output: [0,0,9,0,0]
         }
         return output;
 ```
+
+
+### <a id='table7'> 7. Longest Consecutive Sequence 最长序列 </a>
+
+Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
+
+You must write an algorithm that runs in O(n) time.
+
+
+**Python**
+
+```python
+        # set的特性是无序且无重复项，这样可以避免多次运行不必要的项目
+        numSet = set(nums)
+        longest = 0
+
+        for n in numSet:
+            # 确认element为第一个项目
+            if (n - 1) not in numSet:
+                length = 1
+                # 通过while循环来寻找最长序列
+                while (n + length) in numSet:
+                    length += 1
+                # 储存最长序列
+                longest = max(longest, length)
+        
+        return longest
+```
+
+**Java**
+
+**Java HashSet**
+1. HashSet 基于 HashMap 来实现的，是一个不允许有重复元素的集合。
+2. HashSet 允许有 null 值。
+3. HashSet 是无序的，即不会记录插入的顺序。
+4. HashSet 不是线程安全的， 如果多个线程尝试同时修改 HashSet，则最终结果是不确定的。 您必须在多线程访问时显式同步对 HashSet 的并发访问。
+5. HashSet 实现了 Set 接口。
+6. HashSet 类位于 java.util 包中，使用前需要引入它，语法格式如下：
+    ``import java.util.HashSet; // 引入 HashSet 类``
+7. 以下实例我们创建一个 HashSet 对象 sites，用于保存字符串元素：
+    ``HashSet<String> sites = new HashSet<String>();``
+8. HashSet的方法：
+   1. 添加element： ``add()``
+   2. 判断包含element： ``contains()``
+   3. 删除指定element： ``remove()``
+   4. 清空： ``clear()``
+   5. 大小： ``size()``
+   6. 迭代： ``for (Type i : HashSet_name) ``
+
+```java
+    public int longestConsecutive(int[] nums) {
+        if (nums.length == 0) return 0;
+        HashSet<Integer> numSet = new HashSet<>();
+
+        for(int num: nums) numSet.add(num);
+        int longest = 0;
+
+        for(int num: numSet){
+            if(!numSet.contains(num - 1)){
+                int length = 1;
+                while(numSet.contains(num + 1)){
+                    length++;
+                    num++;
+                }
+                longest = Math.max(longest, length);
+            }
+        }
+
+        return longest;
+    }
+```
+
