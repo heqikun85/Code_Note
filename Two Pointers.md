@@ -26,4 +26,4 @@ isalnum()：可解析**字母+汉字+数字**
    Python的str 调转为 `newStr == newStr[::-1] #前两个参数为空，第三个参数为从队尾往队前移动`
 
 2. 直接通过指针的方式逐帧移动，来对比input str的每个字符是否一致。
-   ![image](https://github.com/heqikun85/Code_Note/blod/main/20231231154431.png)
+   ![image](https://github.com/heqikun85/Code_Note/raw/main/20231231154431.png)
