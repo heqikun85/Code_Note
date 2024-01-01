@@ -25,5 +25,49 @@ isalnum()：可解析**字母+汉字+数字**
    不可接受中间位：检查str的单双，如为单数则返回false。如为双数，直接调转整个str，来对比新的str和原str是否一致。
    Python的str 调转为 `newStr == newStr[::-1] #前两个参数为空，第三个参数为从队尾往队前移动`
 
+```python
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        new_str = ''
+
+        for ch in s:
+            if ch.isalnum():
+               new_str += ch.lower()
+        return new_str == new_str[::-1]
+```
+
+
 2. 直接通过指针的方式逐帧移动，来对比input str的每个字符是否一致。
    ![image](https://github.com/heqikun85/Code_Note/raw/main/20231231154431.png)
+
+   这种方法需要用到ASCii码来验证每个字符是否是非字母串。**数字串第一个是0，从编号48开始，到57. 字母串upper从A到Z，65-90，lower从a到z，97-122**
+
+   python如果要用同project内的inside function，需要用前缀self
+
+```python
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        l = 0
+        r = len(s) - 1
+
+        while l < r:
+            while l < r and not self.alphaNum(s[l]):
+                l += 1
+            while r > l and not self.alphaNum(s[r]):
+                r -= 1
+            
+            if s[l].lower() != s[r].lower():
+                return False
+            l += 1
+            r -= 1
+        return True 
+    
+    def alphaNum(self, c):
+        return (ord("A") <= ord(c) <= ord("Z") 
+                or ord('a') <= ord(c) <= ord('z') 
+                or ord('0') <= ord(c) <= ord('9'))
+```
+以上解法比第一种时间上要快一点，但内存使用会多一点。
+
+
