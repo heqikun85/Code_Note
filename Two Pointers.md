@@ -8,20 +8,20 @@
 
 ### <a id= "table1"> 1. Valid Palindrome 有效回文 </a>
 
-**Palindrome(派林卓母)** 是指以中间位为准，前后一致的形式。可以是数字 121， 也可以是文字，aba
+**Palindrome(派林卓母)** 是指以中间位为准，前后一致的形式。可以是数字`121`， 也可以是文字`aba`。    
 这题的难点在于移除非char字符。
 
-**Python**有三个内奸函数，`isdigit()、isalpha()、isalnum()` 
-isdigit()：**纯数字**，即使是带圈的数字，比如 **①，②** 之类的也可解析。/n
-isalpha()：可解析**字符+汉字**，但不可解析 数字+汉字。/n
-isalnum()：可解析**字母+汉字+数字**/n
+**Python**有三个内奸函数，`isdigit()、isalpha()、isalnum()`   
+isdigit()：**纯数字**，即使是带圈的数字，比如 **①，②** 之类的也可解析。  
+isalpha()：可解析**字符+汉字**，但不可解析 数字+汉字。  
+isalnum()：可解析**字母+汉字+数字**  
 
-这题在Python中可以用 `isalnum()` 这个函数来区分非字符和字符。**面试时可能对这类取巧函数不认可**
+这题在Python中可以用 `isalnum()` 这个函数来区分非字符和字符。**面试时可能对这类取巧函数不认可**  
 
-第二个问题点：对比重新储存后的string。我们需要重新储存全字符的input string。有两种方法可以对比
-1. 可接受中间位为独立字符：直接调转整个str，来对比新的str和原str是否一致
-   不可接受中间位：检查str的单双，如为单数则返回false。如为双数，直接调转整个str，来对比新的str和原str是否一致。
-   Python的str 调转为 `newStr == newStr[::-1] #前两个参数为空，第三个参数为从队尾往队前移动`
+第二个问题点：对比重新储存后的string。我们需要重新储存全字符的input string。有两种方法可以对比  
+1. 可接受中间位为独立字符：直接调转整个str，来对比新的str和原str是否一致  
+   不可接受中间位：检查str的单双，如为单数则返回false。如为双数，直接调转整个str，来对比新的str和原str是否一致。  
+   Python的str 调转为 `newStr == newStr[::-1] #前两个参数为空，第三个参数为从队尾往队前移动
 
 ```python
 class Solution:
@@ -70,10 +70,10 @@ class Solution:
 
 **Java**
 
-Java 的思路和Python的第二种思路一样，使用两个pointer的方式。
-这其中需要用到`Character`这个特殊类。用以确定字符是否是大小写字母或者转换字符类型。
-因为不需要用到内嵌loop，而是用两个if statement替代了内嵌的loop，所以run time很短，
-但memory比python高很多。
+Java 的思路和Python的第二种思路一样，使用两个pointer的方式。  
+这其中需要用到`Character`这个特殊类。用以确定字符是否是大小写字母或者转换字符类型。  
+因为不需要用到内嵌loop，而是用两个if statement替代了内嵌的loop，所以run time很短，  
+但memory比python高很多。  
 
 ```java
 class Solution {
@@ -106,17 +106,12 @@ class Solution {
 
 **C++**
 
-isalnum()：用来判断一个字符是否为数字或者字母，也就是说判断一个字符是否属于a-z || A-Z || 0-9。
-
-isalpha()：用来判断一个字符是否为字母，如果是字符则返回非零，否则返回零。
-
-islower()：用来判断一个字符是否为小写字母，也就是是否属于a~z。
-
-isupper()：和islower相反，用来判断一个字符是否为大写字母。
-
-tolower()：转换字符为小写字符
-
-toupper()：转换字符为大写字符
+isalnum()：用来判断一个字符是否为数字或者字母，也就是说判断一个字符是否属于a-z || A-Z || 0-9。  
+isalpha()：用来判断一个字符是否为字母，如果是字符则返回非零，否则返回零。  
+islower()：用来判断一个字符是否为小写字母，也就是是否属于a~z。  
+isupper()：和islower相反，用来判断一个字符是否为大写字母。  
+tolower()：转换字符为小写字符  
+toupper()：转换字符为大写字符  
 
 C++仍然使用了while loop，内存使用小了很多，是最小的一个。run time也比python的小。
 
@@ -148,9 +143,9 @@ public:
 
 ### <a id= "table3"> 2. Two Sum II 两数之和 II </a>
 
-和之前题目一样，但不可以用hashmap的方式。
-之前的方法是用map的方式，把index 和 number储存为 key -> value的形式，然后用map的搜索功能在队列中寻找匹配的数字。
-用pointer的方法我们分别将前后两个pointer相加，因为是非递减数组，所以通过结果的大小来判断移动哪个pointer。
+和之前题目一样，但不可以用hashmap的方式。  
+之前的方法是用map的方式，把index 和 number储存为 key -> value的形式，然后用map的搜索功能在队列中寻找匹配的数字。  
+用pointer的方法我们分别将前后两个pointer相加，因为是非递减数组，所以通过结果的大小来判断移动哪个pointer。  
 
 **C++**
 
@@ -210,7 +205,7 @@ class Solution {
 
 **Python**
 
-Python的逻辑一样，没有取巧法，但runtime非常高。
+Python的逻辑一样，没有取巧法，但runtime非常高。  
 
 ```python
 class Solution:
