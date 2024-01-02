@@ -107,10 +107,15 @@ class Solution {
 **C++**
 
 isalnum()：用来判断一个字符是否为数字或者字母，也就是说判断一个字符是否属于a~z||A~Z||0~9。
+
 isalpha()：用来判断一个字符是否为字母，如果是字符则返回非零，否则返回零。
+
 islower()：用来判断一个字符是否为小写字母，也就是是否属于a~z。
+
 isupper()：和islower相反，用来判断一个字符是否为大写字母。
+
 tolower()：转换字符为小写字符
+
 toupper()：转换字符为大写字符
 
 C++仍然使用了while loop，内存使用小了很多，是最小的一个。run time也比python的小。
