@@ -581,12 +581,12 @@ public:
 
 ### <a id='table6'> 6. Product of Array Except Self 阵列乘积 </a>
 
-Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
-The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
-You must write an algorithm that runs in O(n) time and without using the division operation.
-给定一个整数数组 nums，返回一个数组 answer，使得 answer[i] 等于 nums 中除 nums[i] 以外所有元素的乘积。
-nums 的任何前缀或后缀的乘积都保证适合 32 位整数。
-您必须在不使用除法运算的情况下，编写一个运行时间为 O(n) 的算法。
+Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].  
+The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.  
+You must write an algorithm that runs in O(n) time and without using the division operation.  
+给定一个整数数组 nums，返回一个数组 answer，使得 answer[i] 等于 nums 中除 nums[i] 以外所有元素的乘积。  
+nums 的任何前缀或后缀的乘积都保证适合 32 位整数。  
+您必须在不使用除法运算的情况下，编写一个运行时间为 O(n) 的算法。   
 
 Example 1:
 
