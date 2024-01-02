@@ -589,13 +589,12 @@ nums 的任何前缀或后缀的乘积都保证适合 32 位整数。
 您必须在不使用除法运算的情况下，编写一个运行时间为 O(n) 的算法。   
 
 Example 1:
+Input: nums = [1,2,3,4]  
+Output: [24,12,8,6]  
 
-Input: nums = [1,2,3,4]
-Output: [24,12,8,6]
-Example 2:
-
-Input: nums = [-1,1,0,-3,3]
-Output: [0,0,9,0,0]
+Example 2:  
+Input: nums = [-1,1,0,-3,3]  
+Output: [0,0,9,0,0]  
 
 **Python**
 
@@ -653,8 +652,7 @@ Output: [0,0,9,0,0]
 
 ### <a id='table7'> 7. Longest Consecutive Sequence 最长序列 </a>
 
-Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
-
+Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.  
 You must write an algorithm that runs in O(n) time.
 
 
