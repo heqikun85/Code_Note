@@ -223,9 +223,189 @@ class Solution:
 
 ### <a id= "table3"> 3. 3Sum 三数之和 </a>
 
-给到一个一个数组，将该数组内的数字没三个分成一个子组，没个子组的合为0.
+给到一个一个数组，将该数组内的数字没三个分成一个子组，每个子组的合为0.
+不能包含重复的三元组，也就是每个数字只能用一次。**duplicate 重复**
 
 Example 1:
 Input: nums = [-1,0,1,2,-1,-4]
 Output: [[-1,-1,2],[-1,0,1]]
 
+这题的code解法非常复杂  
+首先我们考虑input数组没有规律，但题目并没有要求给出数组的index，所以我们完全可以sort数组，  
+那么数组就会以递增的方式存在。  
+以上面example 1 的数组为例
+sort之后的 nums = [-4,-1,-1,0,1,2]  
+在数组被sort后，我们即可以使用TWO SUM II的方式。  
+将第一个数字作为主数字，主位之后一位为left point，最后一位为right point。
+
+
+```python
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        res = [] # set result array
+        nums.sort() # sort input array
+
+        # use index and value to set the target value and point value
+        for i, a in enumerate(nums): 
+            if a > 0: # 已sort的array，如果首位大于0，就不用继续下去了
+                break 
+            # 因为数组已sort，而且不允许重复的数组出现。所以设置这个条件，如果当前数字和前一个数字相同，就说明我们已找过类似答案，直接跳过这个循环。
+            if i > 0 and a == nums[i-1]: 
+                continue
+            l, r = i + 1, len(nums) - 1 # set the left and right point
+            #when left point smaller than right point, continue the loop
+            while l < r:
+                tSum = a + nums[l] + nums[r] #get the sum
+                if tSum > 0: #if too big, move the right point to left
+                    r -= 1
+                elif tSum < 0: # if too small, move the left point to right
+                    l += 1
+                else:
+                    res.append([a, nums[l], nums[r]]) # if sum equel to 0 then add the three num into result array
+                    # 到这里，已经有一个结果了，但是我们不能确定是否有另一个结果。
+                    # 比如example中【-1，0，1】和【-1，-1，2】两个-1的结果
+                    # so we keep move left point，until left point equal to right point
+                    # 并且如果left point于前一个数字相同，就跳过。
+                    l += 1 
+                    while nums[l] == nums[l - 1] and l < r:
+                        l += 1
+        return res
+```
+
+**Java**
+
+第一种解法和python逻辑一样。需要注意的是，for loop的终止时间，为length -2。  
+为何要检查到倒数第二个，如果array长度大于3，其实用-3也可以实现。  
+但是如果array大小只有3的话，-3会导致整个循环不运作。所以必须检查到-2的位置。
+**在同样逻辑的情况下，java的memory使用要高于python。但runtime明显的加快**  
+
+```java
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        ArrayList<List<Integer>> res = new ArrayList<List<Integer>>();
+        
+
+        for(int i = 0; i < nums.length-2; i++){
+            if(nums[i] > 0){
+                break;
+            }
+
+            if(i > 0 && nums[i] == nums[i - 1]){
+                continue;
+            }
+            
+            int l = i + 1;
+            int r = nums.length - 1;
+
+            while(l < r){
+                int sum = nums[i] + nums[l] + nums[r];
+                if(sum > 0){
+                    r--;
+                }else if(sum < 0){
+                    l++;
+                }else{
+                    ArrayList<Integer> mol = new ArrayList<Integer>();
+                    mol.add(nums[i]);
+                    mol.add(nums[l]);
+                    mol.add(nums[r]);
+                    res.add(mol);
+                    l++;
+                    while(nums[l] == nums[l-1] && l < r){
+                        l++;
+                    } 
+                }
+            }
+        }
+        return res;
+    }
+}
+```
+
+```java
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        //这里用LinkedList的原因在于，1.LinkedList添加和删除元素比java快 2.LinkedList占用小
+        LinkedList<List<Integer>> sol = new LinkedList<List<Integer>>();
+
+        for (int i = 0; i < nums.length - 2; i++) {
+            //Only consider non-duplicate elements for i
+            if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) {
+                int target = 0 - nums[i];
+                int left = i + 1;
+                int right = nums.length - 1;
+
+                while (left < right) {
+                    if (nums[left] + nums[right] == target) {
+                        ArrayList<Integer> miniSol = new ArrayList<>();
+                        miniSol.add(nums[i]);
+                        miniSol.add(nums[left]);
+                        miniSol.add(nums[right]);
+                        sol.add(miniSol);
+                        while (left < right && nums[left] == nums[left + 1]) {
+                            left++;
+                        }
+                        while (left < right && nums[right] == nums[right - 1]) {
+                            right--;
+                        }
+                        left++;
+                        right--;
+                    } else if (nums[left] + nums[right] > target) {
+                        right--;
+                    } else {
+                        left++;
+                    }
+                }
+            }
+        }
+
+        return sol;
+    }
+}
+```
+
+整体逻辑和上一个是一样的，只是有部分写法细分不同
+
+
+**C++**
+
+C++的runtime和memory是相对平衡的，runtime比java的高一点，但不多，memory和python几乎接近。
+
+```C++
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>> res;
+        int n = nums.size();
+
+        if(n<3) return res;
+
+        sort(nums.begin(),nums.end());
+
+        for(int i = 0; i < n-2; i++){
+            if(nums[i] > 0) break;
+            if(i>0 && nums[i] == nums[i-1]) continue;
+
+            int l = i + 1;
+            int r = n - 1;
+
+            while(l < r){
+                int sum = nums[i] + nums[l] + nums[r];
+                if(sum < 0) {
+                    l++;
+                }else if(sum > 0){
+                    r--;
+                }else{
+                    res.push_back({nums[i], nums[l], nums[r]});
+                    l++;
+                    while(l < r && nums[l] == nums[l-1]){
+                        l++;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+};
+```
