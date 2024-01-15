@@ -1,4 +1,3 @@
-# 刷题笔记
 ## LeeCode刷题
 
 1. [contains duplicate(查找重复数据)](#table1)

@@ -1,4 +1,5 @@
 ## LeeCode刷题
+
  1. [Best Time to Buy and Sell Stock 最佳购买日](#table1)
  2. [Longest Substring Without Repeating Characters 最长非重复字符串](#table2)
  3. [Longest Repeating Character Replacement 最长重复字符替换](#table3)
