@@ -1,11 +1,7 @@
-# 刷题笔记
 ## LeeCode刷题
-
-- [刷题笔记](#刷题笔记)
-  - [LeeCode刷题](#leecode刷题)
-    - [ 1. Best Time to Buy and Sell Stock 最佳购买日 ](#-1-best-time-to-buy-and-sell-stock-最佳购买日-)
-    - [ 2. Longest Substring Without Repeating Characters 最长非重复字符串 ](#-2-longest-substring-without-repeating-characters-最长非重复字符串-)
-    - [ 3. Longest Repeating Character Replacement 最长重复字符替换 ](#-3-longest-repeating-character-replacement-最长重复字符替换-)
+ 1. [Best Time to Buy and Sell Stock 最佳购买日](#table1)
+ 2. [Longest Substring Without Repeating Characters 最长非重复字符串](#table2)
+ 3. [Longest Repeating Character Replacement 最长重复字符替换](#table3)
 
 
 ### <a id= "table1"> 1. Best Time to Buy and Sell Stock 最佳购买日 </a>

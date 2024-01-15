@@ -1,4 +1,3 @@
-# 刷题笔记
 ## LeeCode刷题
 
 1. [Valid Palindrome 有效回文](#table1)

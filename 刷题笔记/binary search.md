@@ -1,10 +1,9 @@
 # LeeCode刷题
-
-- [LeeCode刷题](#leecode刷题)
-    - [ 1. Binary Search 二分查找 ](#-1-binary-search-二分查找-)
-    - [ 2. Search a 2D Matrix 搜索二维矩阵 ](#-2-search-a-2d-matrix-搜索二维矩阵-)
-    - [ 3. Koko Eating Bananas 科科吃香蕉 ](#-3-koko-eating-bananas-科科吃香蕉-)
-    - [ 4. Find Minimum In Rotated Sorted Array 查找旋转排序数组中的最小值 ](#-4-find-minimum-in-rotated-sorted-array-查找旋转排序数组中的最小值-)
+1. [Binary Search 二分查找](#table1)
+2. [Search a 2D Matrix 搜索二维矩阵](#table2)
+3. [Koko Eating Bananas 科科吃香蕉](#table3)
+4. [Find Minimum In Rotated Sorted Array 查找旋转排序数组中的最小值](#table4)
+   
 
 **Binary Search**
 是指拆半查找，将数据分成两半，同时查找。计算公式： a < log n < b  
@@ -58,6 +57,7 @@ class Solution {
         }
         return -1;
     }
+}
 ```
 
 ```c++

@@ -1,10 +1,8 @@
 # LeeCode刷题
-
-- [LeeCode刷题](#leecode刷题)
-    - [ 1. Valid Parentheses 有效括号 ](#-1-valid-parentheses-有效括号-)
-    - [ 2. Min Stack 最小堆栈 ](#-2-min-stack-最小堆栈-)
-    - [ 3. Evaluate Reverse Polish Notation 评估反波兰符号 ](#-3-evaluate-reverse-polish-notation-评估反波兰符号-)
-    - [ 4. Generate Parentheses 生成括号 ](#-4-generate-parentheses-生成括号-)
+1. [Valid Parentheses 有效括号](#table1)
+2. [Min Stack 最小堆栈](#table2)
+3. [Evaluate Reverse Polish Notation 评估反波兰符号](#table3)
+4. [Generate Parentheses 生成括号](#table4)
 
 
 ### <a id= "table1"> 1. Valid Parentheses 有效括号 </a>
