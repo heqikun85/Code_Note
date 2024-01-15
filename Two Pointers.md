@@ -141,7 +141,7 @@ public:
 ```
 
 
-### <a id= "table3"> 2. Two Sum II 两数之和 II </a>
+### <a id= "table2"> 2. Two Sum II 两数之和 II </a>
 
 和之前题目一样，但不可以用hashmap的方式。  
 之前的方法是用map的方式，把index 和 number储存为 key -> value的形式，然后用map的搜索功能在队列中寻找匹配的数字。  
