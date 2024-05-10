@@ -23,7 +23,7 @@ B.S. in Computer Science
 **Diablo Valley College**
   ~ Pleasant Hill, CA
 
-B.S. in Computer Science
+A.S. in Computer Science
   ~ 01/2018 - 07/2021
 
 ## Main courses
