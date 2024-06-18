@@ -1,6 +1,27 @@
 # Vue教程
 
-### 响应式调用
+1. [响应式调用](#table1)
+2. [attribute绑定](#table2)
+3. [事件监听](#table3)
+4. [表单绑定](#table4)
+5. [条件渲染](#table5)
+6. [列表渲染](#table6)
+7. [计算属性](#table7)
+8. [生命周期和模板引用](#table8)
+9. [侦听器（有异步function的写法）](#table9)
+10. [自组件/Props](#table10)
+11. [Emits/插槽](#table11)
+12. [](#table12)
+13. [](#table13)
+14. [](#table14)
+15. [](#table15)
+16. [](#table16)
+17. [](#table17)
+18. [](#table18)
+19. [](#table19)
+20. [](#table20)
+
+### <a id= "table1">响应式调用</a>
 
 Vue是将从属于同一个组件的 HTML、CSS 和 JavaScript 封装在使用 .vue 后缀的文件中。  
 Vue 的核心功能是声明式渲染：通过扩展于标准 HTML 的模板语法，我们可以根据 JavaScript 的状态来描述 HTML 应该是什么样子的。  
@@ -56,7 +77,7 @@ split('') 是将每个字符用空格分开，reverse()是把字符全都倒转�
 `<script setup>` block 让代码变得简单了，只需要在这个块中定义响应内容。
 
 
-### attribute绑定
+### <a id= "table2">attribute绑定</a>
 为了给 attribute 绑定一个动态值，需要使用 v-bind 指令：
 
 ```js
@@ -85,7 +106,7 @@ const titleClass = ref('title')
 ```
 一开始的titleClass定义了titleClass的对象。style块中title赋值为red，然后在h1块中通过语法将内容绑定为titleClass
 
-### 事件监听
+### <a id= "table3">事件监听</a>
 
 我们可以使用 `v-on` 指令监听 DOM 事件：  
 ```js
@@ -113,7 +134,7 @@ const titleClass = ref('title')
 ```
 **`<button>`的用法注意一下**
 
-### 表单绑定
+### <a id= "table4">表单绑定</a>
 
 我们可以同时使用 `v-bind` 和 `v-on` 来在表单的输入元素上创建双向绑定：  
 ```js
@@ -129,7 +150,7 @@ function onInput(e) {
 为了简化双向绑定，Vue 提供了一个 `v-model` 指令，它实际上是上述操作的语法糖：  
 ```<input v-model="text">```
 
-### 条件渲染
+### <a id= "table5">条件渲染</a>
 
 ```js
 <h1 v-if="awesome">Vue is awesome!</h1>
@@ -155,7 +176,7 @@ function toggle() {
 </template>
 ```
 
-### 列表渲染
+### <a id= "table6">列表渲染</a>
 
 我们可以使用 v-for 指令来渲染一个基于源数组的列表：
 ```js
@@ -222,3 +243,228 @@ function removeTodo(todo) {
   </ul>
 </template>
 ```
+
+### <a id= "table7">计算属性</a>
+
+通过给每一个 todo 对象添加 done 属性来实现的，并且使用了 v-model 将其绑定到复选框上：  
+通过对done的true/false判断来完成html内容的更新。  
+
+API：computed()。它可以让我们创建一个计算属性 ref，这个 ref 会动态地根据其他响应式数据源来计算其 .value：
+
+```js
+<script setup>
+import { ref, computed } from 'vue' // 加入computed API
+
+let id = 0
+
+const newTodo = ref('')
+const hideCompleted = ref(false)
+const todos = ref([
+  { id: id++, text: 'Learn HTML', done: true },
+  { id: id++, text: 'Learn JavaScript', done: true },
+  { id: id++, text: 'Learn Vue', done: false }
+])
+
+// 二元判断法，return hideCompleted的value，而hideCompleted的value在html上由click控制每次都逆向。
+// ？之后 当hideCompleted为true，则筛选出相关内容。：之后则为false后内容。
+
+const filteredTodos = computed(() => {
+  return hideCompleted.value
+    ? todos.value.filter((t) => !t.done)
+    : todos.value
+})
+
+function addTodo() {
+  todos.value.push({ id: id++, text: newTodo.value, done: false })
+  newTodo.value = ''
+}
+
+function removeTodo(todo) {
+  todos.value = todos.value.filter((t) => t !== todo)
+}
+</script>
+
+<template>
+  <form @submit.prevent="addTodo">
+    <input v-model="newTodo" required placeholder="new todo">
+    <button>Add Todo</button>
+  </form>
+  <ul>
+    <li v-for="todo in filteredTodos" :key="todo.id">
+      <input type="checkbox" v-model="todo.done">
+      <span :class="{ done: todo.done }">{{ todo.text }}</span>
+      <button @click="removeTodo(todo)">X</button>
+    </li>
+  </ul>
+  <button @click="hideCompleted = !hideCompleted">
+    {{ hideCompleted ? 'Show all' : 'Hide completed' }} //这里也用二元法分别现实内容
+  </button>
+</template>
+
+<style>
+.done {
+  text-decoration: line-through;
+}
+</style>
+```
+
+### <a id= "table8">生命周期和模板引用</a>
+
+Vue的响应式和声明式在大部分情况下可以自动更新DOM，但也需要手动更新，这时我们需要使用模板引用——也就是指向模板中一个 DOM 元素的 ref。  
+我们需要通过这个特殊的 ref attribute 来实现模板引用： `<p ref="pElementRef">hello</p>`
+
+要访问该引用，我们需要声明一个同名的 ref：`const pElementRef = ref(null)`  
+注意这个 ref 使用 null 值来初始化。这是因为当 `<script setup>` 执行时，DOM 元素还不存在。模板引用 ref 只能在组件挂载后访问。  
+要在挂载之后执行代码，我们可以使用 onMounted() 函数：  
+```js
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  // 此时组件已经挂载。
+})
+```
+
+这被称为生命周期钩子——它允许我们注册一个在组件的特定生命周期调用的回调函数。  
+还有一些其他的钩子如 onUpdated 和 onUnmounted。
+
+```js
+<script setup>
+import { ref , onMounted} from 'vue'
+
+// 通过onMounted组件，来更改p的内容，在 `<p>` 内使用了`ref = “pElementRef”`，这样能通过更改pElementRef来更改相应内容
+onMounted(()=>{
+  pElementRef.value.textContent = "mounted"
+})
+const pElementRef = ref(null)
+</script>
+
+<template>
+  <p ref="pElementRef">Hello</p>
+</template>
+```
+
+### <a id= "table9">侦听器（有异步function的写法）</a>
+
+`import { ref, watch } from 'vue'`这是监听器的pack
+
+```js
+watch(count, (newCount) => {
+  // 没错，console.log() 是一个副作用
+  console.log(`new count is: ${newCount}`)
+})
+```
+基本语法为，watch（监控对象，function）
+
+
+```js
+<script setup>
+import { ref, watch } from 'vue'
+
+const todoId = ref(1)
+const todoData = ref(null)
+
+//这是一个异步抓取信息的 function， 注意异步的写法，以后可以用到
+async function fetchData() {
+  todoData.value = null
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+  )
+  todoData.value = await res.json()
+}
+
+fetchData()
+  
+watch(todoId, fetchData)
+</script>
+
+<template>
+  <p>Todo id: {{ todoId }}</p>
+  <button @click="todoId++" :disabled="!todoData">Fetch next todo</button>
+  <p v-if="!todoData">Loading...</p>
+  <pre v-else>{{ todoData }}</pre>
+</template>
+```
+
+### <a id= "table10">自组件/Props</a>
+
+父组件可以在模板中渲染另一个组件作为子组件。要使用子组件，我们需要先导入它：
+`import ChildComp from './ChildComp.vue'`
+
+然后我们就可以在模板中使用组件，就像这样：`<ChildComp />`
+
+子组件可以通过 props 从父组件接受动态数据。首先，需要声明它所接受的 props：
+```js
+<!-- ChildComp.vue -->
+<script setup>
+const props = defineProps({
+  msg: String
+})
+</script>
+```
+这一段不需要编写，是默认在ChildComp组件内的。
+
+父组件可以像声明 HTML attributes 一样传递 props。若要传递动态值，也可以使用 v-bind 语法：
+```js
+<script setup>
+import { ref } from 'vue'
+import ChildComp from './ChildComp.vue'
+
+const greeting = ref('Hello from parent')
+</script>
+
+<template>
+  <ChildComp :msg="greeting" />
+</template>
+```
+
+### <a id= "table11">Emits/插槽</a>
+
+子组件还可以向父组件触发事件：
+```js
+<script setup>
+// 声明触发的事件
+const emit = defineEmits(['response'])
+
+// 带参数触发
+emit('response', 'hello from child')
+</script>
+```
+emit() 的第一个参数是事件的名称。其他所有参数都将传递给事件监听器。
+
+父组件可以使用 v-on 监听子组件触发的事件——这里的处理函数接收了子组件触发事件时的额外参数并将它赋值给了本地状态：
+```js
+<script setup>
+import { ref } from 'vue'
+import ChildComp from './ChildComp.vue'
+
+const childMsg = ref('No child msg yet')
+</script>
+
+<template>
+  <ChildComp @response = "(msg)=> childMsg = msg"/>
+  <p>{{ childMsg }}</p>
+</template>
+```
+
+父组件还可以通过插槽 (slots) 将模板片段传递给子组件：
+```js 
+<ChildComp>
+  This is some slot content!
+</ChildComp>
+```
+在子组件中，可以使用 <slot> 元素作为插槽出口 (slot outlet) 渲染父组件中的插槽内容 (slot content)
+
+```js
+<script setup>
+import { ref } from 'vue'
+import ChildComp from './ChildComp.vue'
+
+const msg = ref('from parent')
+</script>
+
+<template>
+  <ChildComp>Message: {{ msg }}</ChildComp>
+</template>
+```
+ChildComp 中没有内容时则显示`<slot>Fallback content</slot>`中的内容
+
