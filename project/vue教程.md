@@ -11,7 +11,7 @@
 9. [侦听器（有异步function的写法）](#table9)
 10. [自组件/Props](#table10)
 11. [Emits/插槽](#table11)
-12. [](#table12)
+12. [开发过程中的实例](#table12)
 13. [](#table13)
 14. [](#table14)
 15. [](#table15)
@@ -20,6 +20,38 @@
 18. [](#table18)
 19. [](#table19)
 20. [](#table20)
+
+### 创建Vue项目
+在teminal中运行：`npm create vue@latest`
+```js
+✔ Project name: … <your-project-name>
+✔ Add TypeScript? … No / Yes
+✔ Add JSX Support? … No / Yes
+✔ Add Vue Router for Single Page Application development? … No / Yes
+✔ Add Pinia for state management? … No / Yes
+✔ Add Vitest for Unit testing? … No / Yes
+✔ Add an End-to-End Testing Solution? … No / Cypress / Nightwatch / Playwright
+✔ Add ESLint for code quality? … No / Yes
+✔ Add Prettier for code formatting? … No / Yes
+✔ Add Vue DevTools 7 extension for debugging? (experimental) … No / Yes
+
+Scaffolding project in ./<your-project-name>...
+Done.
+```
+如果不确定是否要开启某个功能，你可以直接按下回车键选择 No。在项目被创建后，通过以下步骤安装依赖并启动开发服务器：
+```js 
+cd <your-project-name>
+cnpm install
+npm run dev
+```
+完成创建后项目内文件夹目录：
+- node_modules: Vue项目运行的依赖文件夹
+- public：资源文件夹（浏览器图标）
+- src：源码文件夹（和java一样）
+- jsconfi.json
+- package-lock.json
+- package.json：项目名/项目版本/运行模式/vue版本依赖
+
 
 ### <a id= "table1">响应式调用</a>
 
@@ -467,4 +499,8 @@ const msg = ref('from parent')
 </template>
 ```
 ChildComp 中没有内容时则显示`<slot>Fallback content</slot>`中的内容
+
+### <a id= "table12">开发过程中的实例</a>
+每个绑定仅支持单一表达式。也就是仅一段能放在return后面的代码。
+
 
