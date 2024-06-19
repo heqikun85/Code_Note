@@ -6,23 +6,24 @@
 4. [表单绑定](#table4)
 5. [条件渲染](#table5)
 6. [列表渲染](#table6)
-7. [计算属性](#table7)
-8. [生命周期和模板引用](#table8)
-9. [侦听器（有异步function的写法）](#table9)
-10. [自组件/Props](#table10)
-11. [Emits/插槽](#table11)
-12. [开发过程中的实例](#table12)
-13. [](#table13)
-14. [](#table14)
-15. [](#table15)
-16. [](#table16)
-17. [](#table17)
-18. [](#table18)
-19. [](#table19)
-20. [](#table20)
+7. [列表渲染 - key/object](#table20)
+8. [计算属性](#table7)
+9. [生命周期和模板引用](#table8)
+10. [侦听器（有异步function的写法）](#table9)
+11. [自组件/Props](#table10)
+12. [Emits/插槽](#table11)
+13. [开发过程中的实例](#table12)
+14. [](#table13)
+15. [](#table14)
+16. [](#table15)
+17. [](#table16)
+18. [](#table17)
+19. [](#table18)
+20. [](#table19)
+
 
 ### 创建Vue项目
-在teminal中运行：`npm create vue@latest`
+在teminal中运行：`npm create vue@latest` or `npm init vue@latest`
 ```js
 ✔ Project name: … <your-project-name>
 ✔ Add TypeScript? … No / Yes
@@ -51,6 +52,8 @@ npm run dev
 - jsconfi.json
 - package-lock.json
 - package.json：项目名/项目版本/运行模式/vue版本依赖
+- components：Vue和java一样能内联不同的.vue文件当作组件，并调用方法。
+              `import fileName from‘./components/fileName.vue’` 在head引用该文件即可使用该文件的方法。
 
 
 ### <a id= "table1">响应式调用</a>
@@ -127,7 +130,9 @@ const titleClass = ref('title')
 </script>
 
 <template>
-  <h1 :class="titleClass">Make me red</h1> <!-- 此处添加一个动态 class 绑定 -->
+  <h1 :class="titleClass"> 
+    Make me red
+  </h1> 
 </template>
 
 <style>
@@ -182,7 +187,12 @@ function onInput(e) {
 为了简化双向绑定，Vue 提供了一个 `v-model` 指令，它实际上是上述操作的语法糖：  
 ```<input v-model="text">```
 
+
+
 ### <a id= "table5">条件渲染</a>
+
+条件渲染共4个指令：
+`v-if` / `v-else` / `v-else-if` / `v-show`
 
 ```js
 <h1 v-if="awesome">Vue is awesome!</h1>
@@ -207,6 +217,11 @@ function toggle() {
   <h1 v-else>Oh no 😢</h1> //else不需要对应awesome
 </template>
 ```
+
+`v-else-if` Vue会按顺序检查每个v-if -> v-else-if -> v-else, 如果v-if表达式为真，则渲染该元素，并且跳过后续的v-else-if 和 v-else块
+
+`v-show`和`v-if`几乎一样,区别在于，`v-show`在判断为假时，仍然被加载，只是不显示。而`v-if`在判断为假时，组件不被加载。  
+所以`v-show`有较高的初始渲染开销，`v-if`有较高的切换开销
 
 ### <a id= "table6">列表渲染</a>
 
@@ -275,6 +290,42 @@ function removeTodo(todo) {
   </ul>
 </template>
 ```
+
+### <a id= "table20">列表渲染 - key/objec</a>
+**列表渲染中 v-for 之后的语法可以把‘in’更改为‘of’。of 更符合JavaScript的语法**
+
+```js
+<template>
+<biv v-for="(i, index) of item" :key="index">
+  <p>{{i.name}}</p>
+  <p>{{i.age}}</p>
+  <p>{{i.where}}</p>
+  <p>{{index}}</p> //index 必须在一开始渲染才能调用，调用时只需要插入index即可
+</biv>
+</tamplate>
+
+<script setup>
+  const item = ref([
+  {
+    name: 'kevin',
+    age: 38,
+    where: 'shanghai'
+  },
+  { name: 'angela',
+    age: 38,
+    where: 'san francisco'
+  },
+  {
+    name: `cathy`,
+    age:40,
+    where: `pine creek`
+  }
+])
+  </script>
+```
+
+**原则上不允许使用index来作为索引Key，通常这样的都是网络对象请求，会有一个ID，一般用这个唯一的Id来作为key**
+
 
 ### <a id= "table7">计算属性</a>
 
