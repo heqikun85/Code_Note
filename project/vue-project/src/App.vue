@@ -20,7 +20,7 @@
   
   <script setup>
   import event from "./components/event.vue"
-  
+  import {ref} from "vue"
   /*
   const msg = 'this is a example'
   const msgId = ref('msgId')
