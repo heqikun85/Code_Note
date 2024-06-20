@@ -12,8 +12,8 @@
 10. [侦听器（有异步function的写法）](#table9)
 11. [自组件/Props](#table10)
 12. [Emits/插槽](#table11)
-13. [开发过程中的实例](#table12)
-14. [](#table13)
+13. [ArrayList更新](#table12)
+14. [开发过程中的实例](#table13)
 15. [](#table14)
 16. [](#table15)
 17. [](#table16)
@@ -187,7 +187,20 @@ function onInput(e) {
 为了简化双向绑定，Vue 提供了一个 `v-model` 指令，它实际上是上述操作的语法糖：  
 ```<input v-model="text">```
 
+**作为事件监控的传参**
+我们可以通过vue对内容的监控，传输相关的参数，其中也包括相关传输信息。
+```js
+    function getParameter(i,e){
+        console.log(i.name,e);
+    }    
+```
+上面这个function作为获取参数内容的function，传递了两个参数，一个是获取obj的value，一个是获取传输过程中的event。
 
+```js
+ <p @click="getParameter(i,$event)" v-for="(i,index) of obj" :key="i.id">{{i.id}} - {{i.value}} - {{i.name}}
+    </p>
+```
+上面这段代码，通过@click调用getparameter这个function，调用两个参数，一个是obj，一个是$event
 
 ### <a id= "table5">条件渲染</a>
 
@@ -291,7 +304,7 @@ function removeTodo(todo) {
 </template>
 ```
 
-### <a id= "table20">列表渲染 - key/objec</a>
+### <a id= "table20">列表渲染 - key/object</a>
 **列表渲染中 v-for 之后的语法可以把‘in’更改为‘of’。of 更符合JavaScript的语法**
 
 ```js
@@ -551,7 +564,30 @@ const msg = ref('from parent')
 ```
 ChildComp 中没有内容时则显示`<slot>Fallback content</slot>`中的内容
 
-### <a id= "table12">开发过程中的实例</a>
+
+### <a id= "table12">ArrayList 更新</a>
+
+ArrayList的更新，在Vue应用中分为两种模式：
+1. 变更方法：在更新ArrayList过程中，UI同时变更。
+   * push(): 添加数组
+   * pop(): 删除数组中最后一项
+   * shift(): 删除第一项
+   * unshift(elem): 将参数添加到数组第一项，element不限数量
+   * splice(): 这个可以删除多个数组内容，有多种用法，用前查阅
+   * sort(): 排序
+   * reverse(): 反转  
+
+    以上方法都会更新UI，实时显示在网页上。
+
+2. 替换一个数组
+   *  filter(): 筛选数组
+   *  concat(): 合并两个数组
+   *  slice(): 
+  
+    以上三个方法不会更新UI。如果需要使用这三个方法并更新UI，需要将这三个方法更新后的新数组赋值个原数组。
+
+
+### <a id= "table13">开发过程中的实例</a>
 每个绑定仅支持单一表达式。也就是仅一段能放在return后面的代码。
 
 
