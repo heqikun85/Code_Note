@@ -1,19 +1,16 @@
 <template>
-    <h3 :class="'active'">单个class在双引号“”中也必须再加一个单引号引用</h3>
-    <h3 :class="{'active':yesIs, 'where':yesIs}">多个可以用花括号，并且可以用bool判断来动态规划</h3>
-    <h3 :class="myClass">也可以把样式写成object</h3> 
-    <h3 :class="['big','where']">也可以是数组形式</h3>
-    <h3 :class="yesIs ? 'active' : 'where'">也可以是二元判断法</h3>
-    <h3 :class="['big',{'active':yesIs, 'where':noIs}]">数组和对象结合使用时，必须是数组嵌套对象</h3>
+    <h3>表单绑定</h3>
+    <input v-model.lazy.number="message"> <!--同时做到属性绑定及输入事件监听-->
+    <p>{{message + 1}}</p>
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <!--label中的for是将label的状态反馈到checkbox中，这个算是和checkbox连用的-->
+    <label for="checkbox">{{ checked }}</label>
 </template>
     
 <script setup>
 import {ref} from 'vue'
-const yesIs = ref(true)
-const noIs = ref(false)
-const myClass = ref(
-    {'active':true, 'big':true}
-)
+let message = ref("")
+let checked = ref(false)
 </script>
 
 <style>

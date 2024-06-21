@@ -48,7 +48,8 @@ npm run dev
 - package-lock.json
 - package.json：项目名/项目版本/运行模式/vue版本依赖
 - components：Vue和java一样能内联不同的.vue文件当作组件，并调用方法。
-              `import fileName from‘./components/fileName.vue’` 在head引用该文件即可使用该文件的方法。
+
+`import fileName from‘./components/fileName.vue’` 在head引用该文件即可使用该文件的方法。
               
 
 ### <a id= "table2">ArrayList 更新</a>

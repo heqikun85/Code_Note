@@ -8,12 +8,11 @@
 ### <a id= "table1">attribute绑定</a>
 为了给 attribute 绑定一个动态值，需要使用 v-bind 指令：
 
+`<div v-bind:id="dynamicId"></div>`
+冒号后面的部分 (:id) 是指令的“参数”。此处，元素的 id attribute 将与组件状态里的 dynamicId 属性保持同步。 专门的简写语法：
 ```js
-<div v-bind:id="dynamicId"></div>
+<div :id="dynamicId"></div>
 ```
-冒号后面的部分 (:id) 是指令的“参数”。此处，元素的 id attribute 将与组件状态里的 dynamicId 属性保持同步。  
-由于 v-bind 使用地非常频繁，它有一个专门的简写语法：
-`<div :id="dynamicId"></div>`
 
 ```js
 <script setup>
@@ -37,7 +36,7 @@ const titleClass = ref('title')
 一开始的titleClass定义了titleClass的对象。style块中title赋值为red，然后在h1块中通过语法将内容绑定为titleClass
 
 
-### <a id= "table3">事件监听</a>
+### <a id= "table2">事件监听</a>
 
 我们可以使用 `v-on` 指令监听 DOM 事件：  
 ```js
@@ -49,37 +48,17 @@ const titleClass = ref('title')
 ```js
     <script setup>
     import { ref } from 'vue'
-
     const count = ref(0)
     function incre(){count.value++}
-    
     </script>
 
     <template>
     <h1>Make me red</h1> <!-- 此处添加一个动态 class 绑定 -->
     
-    <button @click="incre">
-    {{count}}
-    </button>
+    <button @click="incre">{{count}}</button>
     </template>
 ```
 **`<button>`的用法注意一下**
-
-### <a id= "table4">表单绑定</a>
-
-我们可以同时使用 `v-bind` 和 `v-on` 来在表单的输入元素上创建双向绑定：  
-```js
-<input :value="text" @input="onInput"> // :value 对应value，@input对应动态dom
-
-function onInput(e) {
-  // v-on 处理函数会接收原生 DOM 事件
-  // 作为其参数。
-  text.value = e.target.value // 获取方式。
-}
-```
-
-为了简化双向绑定，Vue 提供了一个 `v-model` 指令，它实际上是上述操作的语法糖：  
-```<input v-model="text">```
 
 **作为事件监控的传参**
 我们可以通过vue对内容的监控，传输相关的参数，其中也包括相关传输信息。
@@ -91,12 +70,56 @@ function onInput(e) {
 上面这个function作为获取参数内容的function，传递了两个参数，一个是获取obj的value，一个是获取传输过程中的event。
 
 ```js
- <p @click="getParameter(i,$event)" v-for="(i,index) of obj" :key="i.id">{{i.id}} - {{i.value}} - {{i.name}}
-    </p>
+ <p @click="getParameter(i,$event)" v-for="(i,index) of obj"
+    :key="i.id">{{i.id}} - {{i.value}} - {{i.name}}</p>
 ```
 上面这段代码，通过@click调用getparameter这个function，调用两个参数，一个是obj，一个是$event
 
+### <a id= "table3">表单绑定</a>
 
+我们可以用同时使用`v-bind` 和 `v-on` 来在表单的输入元素上创建双向绑定：  
+```js
+<input :value="text" @input="onInput"> // :value 对应value，@input对应动态dom
+
+function onInput(e) {
+  // v-on 处理函数会接收原生 DOM 事件
+  // 作为其参数。
+  text.value = e.target.value // 获取方式。
+}
+```
+
+为了简化双向绑定，Vue 提供了一个 `v-model` 指令，它实际上是上述操作的语法糖：  
+`<input v-model="text">`
+
+```js
+<template>
+    <h3>表单绑定</h3>
+    <input v-model="message"> <!--同时做到属性绑定及输入事件监听-->
+    <p>{{message}}</p>
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <!--label中的for是将label的状态反馈到checkbox中，这个算是和checkbox连用的-->
+    <label for="checkbox">{{ checked }}</label>
+</template>
+    
+<script setup>
+import {ref} from 'vue'
+let message = ref("")
+let checked = ref(false)
+</script>
+```
+
+`v-model`提供了修饰符：`.lazy`,`.number`,`.trim`
+`.lazy`: 默认情况下，`v-model`会在每次`input`时间后更新数据。但我们可以添加lazy修饰符来改为在每次change事件后更新数据。
+`v-model.lazy`用这样的方式，上面的代码就$\color{red}{默认在输入完后按回车}$才显示更新内容
+
+`v-model.number`: 将用户输入的字符串类型数据自动转换为数字类型数据，并将转换后的数字赋值给相应的data属性。
+并且，可以叠加使用
+```js
+<input v-model.lazy.number="message"> 
+<p>{{message + 1}}</p>
+```
+
+`v-model.trim`: 用于自动去除首尾空格的处理。这对于输入框等表单元素非常有用,可以确保用户输入的值不包含不必要的空格。
 
 ### <a id= "table4">class绑定</a>
 以下代码阐述了大部分class绑定的方式，具体class的应用，还是要参考css的编写。css是最烦的
