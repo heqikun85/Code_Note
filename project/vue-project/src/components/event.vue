@@ -1,16 +1,21 @@
 <template>
-    <h3>表单绑定</h3>
-    <input v-model.lazy.number="message"> <!--同时做到属性绑定及输入事件监听-->
-    <p>{{message + 1}}</p>
-    <input type="checkbox" id="checkbox" v-model="checked">
-    <!--label中的for是将label的状态反馈到checkbox中，这个算是和checkbox连用的-->
-    <label for="checkbox">{{ checked }}</label>
+    <h3>模版引用</h3>
+    <p ref="pElementRef">{{ content }}</p>
+
+    <button @click="onMounted">获取元素</button>
 </template>
     
 <script setup>
-import {ref} from 'vue'
-let message = ref("")
-let checked = ref(false)
+import {onMounted,ref} from 'vue'
+
+const content = ref("内容")
+const pElementRef = ref(null)
+
+onMounted(()=>{
+    console.log(pElementRef.value)
+
+})
+
 </script>
 
 <style>
