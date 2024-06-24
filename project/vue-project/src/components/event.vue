@@ -1,21 +1,14 @@
 <template>
-    <h3>模版引用</h3>
-    <p ref="pElementRef">{{ content }}</p>
-
-    <button @click="onMounted">获取元素</button>
+    <h3>parent</h3>
+    <p>搜索内容为：{{ num }}</p>
+    <child @get="(msg)=>num = msg"/>
+    
 </template>
     
 <script setup>
-import {onMounted,ref} from 'vue'
-
-const content = ref("内容")
-const pElementRef = ref(null)
-
-onMounted(()=>{
-    console.log(pElementRef.value)
-
-})
-
+import {ref} from 'vue'
+import child from './child.vue'
+const num = ref("")
 </script>
 
 <style>

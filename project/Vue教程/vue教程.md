@@ -8,14 +8,15 @@
 6.  [计算属性](./计算属性.md)
 7.  [生命周期和模板引用 & 侦听器（有异步function的写法）](./模版引用_侦听器.md) 
 8.  [Vue组件应用](./vue组件.md)
-9.  [自组件/Props & Emits/插槽](./自组建_Emits插.md)
+9.  [子组件/Props & Emits/插槽](./子组建_Emits.md)
 10. [ArrayList更新](#table2)
-11. [开发过程中的实例](#table14)
-12. 
-13. [](#table16)
-14. [](#table17)
-15. [](#table18)
-16. [](#table19)
+11. [插槽slot](./插槽slo.md)
+12. [开发过程中的实例](#table14)
+13. 
+14. 
+15. [](#table17)
+16. [](#table18)
+17. [](#table19)
 
 
 ### <a id="table1">创建Vue项目</a>
