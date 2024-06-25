@@ -1,8 +1,10 @@
 <template>
-  <h3>Component B</h3>
+  <h3>Child Component</h3>
+  <p>{{ title }}</p>
 </template>
     
 <script setup>
-import {ref} from 'vue'
+import {ref,inject} from 'vue'
 
+const title = inject("title")
 </script>

@@ -1,28 +1,12 @@
 <template>
-    <h3>Component A</h3>
-    <p>{{ msg }}</p>
-    <button @click="updata">更新数据</button>
+    <h3>Parent component</h3>
+    <eventB />
 </template>
     
-<script>
-export default{
-    data(){
-        return{
-            msg:"老数据"
-        }
-    },
-    beforeUnmount(){
-        console.log("组件卸载之前")
-    },
-    unmounted(){
-        console.log("组件卸载之后")
-    },
-    methods:{
-        updata(){
-            this.msg = "新数据"
-        }
-    }
-}
+<script setup>
+import {ref,defineProps} from 'vue'
+import eventB from './eventB.vue'
+
 </script>
 
 <style>

@@ -1,25 +1,14 @@
 <template>
-  <keep-alive>
-    <component :is= "tab[Comp]"> </component>
-  </keep-alive>
-  <button @click="change">change component</button>
+  <h3>祖宗component</h3>
+  <eventA />
 </template>
   
 <script setup>
-  import {ref} from 'vue'
-  import { defineAsyncComponent } from 'vue';
-  import eventA from "./components/eventA.vue"
-  
-  //异步加载组件
-  const eventB = defineAsyncComponent(()=>
-        import("./components/eventB.vue"))
+  import {ref,provide} from 'vue'
+  import eventA from './components/eventA.vue'
 
-  const tab = {eventA, eventB} 
-  const Comp = ref('eventA')
-
-  function change(){
-    Comp.value = Comp.value == "eventA" ? "eventB" : "eventA"
-  }
+  const msg = ref("hello 来自parent") 
+  provide("title",msg )
 </script>
   
 <style>
