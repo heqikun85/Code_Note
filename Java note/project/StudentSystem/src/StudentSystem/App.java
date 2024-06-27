@@ -19,12 +19,13 @@ public class App {
             String choice = sc.next();
             switch(choice){
                 case "1" -> addStudent(list);
-                case "2" -> deleteStudent(list);
+                case "2" -> deleteStudent(list);    
                 case "3" -> modifyStudent(list);
                 case "4" -> searchStudent(list);
                 case "5" -> {
                     System.out.println("exit system");
-                    break loop; //仅结束循环
+                    //break loop;  //仅结束while循环
+                    System.exit(0); 
                     //System.exit(0);//停止虚拟机运行,运行这段,整个Java程序将结束
                 }
                 default -> System.out.println("You enter a wrong number");
@@ -70,13 +71,65 @@ public class App {
 
     //删除学生
     public static void deleteStudent(ArrayList<Student> list){
-        System.out.println("delete student");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter the ID who you want to Delete");
+        String id = sc.next();
+        int index = getIndex(list, id);
+        if(index > 0){
+            list.remove(index);
+            System.out.println("id: "+ id + " student delete successful");
+        }else{
+            System.out.println("This id dosen't exist. ");
+        }
     }
     
-
     //修改学生
     public static void modifyStudent(ArrayList<Student> list){
-        System.out.println("modify student");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter the id who you want to modify");
+        String id = sc.next();
+        int index = getIndex(list, id);
+        if(index == -1){
+            System.out.println("This id dosen't exist. ");
+        }
+        Student s = list.get(index);
+
+        loop: while(true){
+                System.out.println("1. Student name");
+                System.out.println("2. Student age");
+                System.out.println("3. Student address");
+                System.out.println("4. exit modify");
+                System.out.println("Please enter the number of modify parts");
+                int op = sc.nextInt();
+            switch(op){
+                case 1 -> {
+                    System.out.println("Please enter the name that you want to modify");
+                    sc.nextLine();
+                    String name = sc.nextLine();
+                    s.setName(name);
+                    break;
+                }
+                case 2 ->{
+                    System.out.println("Please enter the age that you want to modify");
+                    int age = sc.nextInt();
+                    s.setAge(age);
+                    break;
+                }
+                case 3 ->{
+                    System.out.println("Please enter the address that you want to modify");
+                    sc.nextLine();
+                    String address = sc.nextLine();
+                    s.setAddress(address);
+                    break;
+                }
+                case 4 ->{
+                    System.out.println("exit modify");
+                    break loop;
+                }
+            default -> System.out.println("wrong choice");
+            }
+        }
+        
     }
 
     //查询学生
@@ -94,8 +147,8 @@ public class App {
     }
 
     //Check ID is unique
-    public static boolean checked(ArrayList<Student> list, String id){
-        
+    public static boolean checked(ArrayList<Student> list, String id){     
+        /*
         for(int i = 0; i < list.size(); i++){
             Student s = list.get(i);
             String stu = s.getId();
@@ -103,6 +156,18 @@ public class App {
                 return true;
             }
         }
-        return false;        
+        return false;  */      
+        return getIndex(list, id) > 0;
+    }
+
+    public static int getIndex(ArrayList<Student> list, String id){
+        for(int i =0; i<list.size(); i++){
+            Student s = list.get(i);
+            String sid = s.getId();
+            if(id.equals(sid)){
+                return i;
+            }
+        }
+        return -1;
     }
 }
