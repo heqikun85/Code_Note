@@ -1,21 +1,25 @@
     package StudentSystem;
 
     import java.util.ArrayList;
-    import java.util.Scanner;
+import java.util.Random;
+import java.util.Scanner;
 
     public class App2 {
+        private static final Scanner sc = new Scanner(System.in);
         public static void main(String[] args) {
+            // 显示欢迎页面
             System.out.println("Welcom to the student management system");
+            // 创建用户对象List
+            ArrayList<User> list = new ArrayList<>();
 
+            
+            // 首页循环选项
             loop: while(true){
-                System.out.println("Please select the option: 1. login  2. Sign in  3. Forgot password");
-                ArrayList<User> list = new ArrayList<>();
-                
-                Scanner sc = new Scanner(System.in);
+                System.out.println("Please select the option: \n 1. login  \n 2. Sign in \n 3. Forgot password \n 4. Exit");
                 int op = sc.nextInt();
                 switch(op){
+                    // 选项进入各个功能
                     case 1 -> login(list);
-
                     case 2 -> register(list);
                     case 3 -> forgotPass(list);
                     case 4 -> {
@@ -27,27 +31,24 @@
             }
         }
 
-        public static void login(ArrayList<User> list){
-            System.out.println("login");
+        private static void login(ArrayList<User> list){
+            System.out.println("login");  
+            String code = getCode();  
         }
 
-        public static void register(ArrayList<User> list){
-            Scanner sc = new Scanner(System.in);
-            String name;
-            String id;
-            String phone;
+        // 注册功能函数
+        private static void register(ArrayList<User> list){
+            String name,id,phone,pass;
 
+            // 输入用户名
             while(true){
                 System.out.println("Please enter user name"); 
                 name = sc.next(); 
-                boolean flag1 = checkUser(name);
-                boolean flag2 = varifyUser(list, name);
-                System.out.println(flag2);
+                boolean flag1 = checkUser(name); //确认用户名符合规则
+                boolean flag2 = verifyUser(list, name); //确认用户名为唯一
                 if(!flag1){
                     System.out.println("this user name isn't allowed");
-                    continue;
-                }
-                if(flag2){
+                }else if(flag2){
                     System.out.println("this user name already exist");
                 }else{
                     System.out.println("user name set");
@@ -55,23 +56,13 @@
                 }
             }
             
-            System.out.println("Please enter Password");
-            String pass = sc.next();
-            while(true){
-                System.out.println("Please enter Password again");
-                String pass2 = sc.next();
-                if(pass.equals(pass2)){
-                    System.out.println("Password is set");
-                    break;
-                }else{
-                    System.out.println("two time password doesn't same");
-                }
-            }
+            pass = setPassWord(); // 设定密码
 
+            // 设定用户id
             while(true){
                 System.out.println("Please enter ID number");
                 id = sc.next();
-                boolean flag = checkId(id);
+                boolean flag = checkId(id); // 确认id输入符合规则
                 if(!flag){
                     System.out.println("this id is wrong");
                 }else{
@@ -83,7 +74,7 @@
             while(true){
                 System.out.println("Please enter phone number");
                 phone = sc.next();
-                boolean flag = checkPhone(phone);
+                boolean flag = checkPhone(phone); //确认电话好吗输入符合规则
                 if(flag){
                     System.out.println("Phone set successful");
                     break;
@@ -92,12 +83,34 @@
                 }
             }
             
-            User u = new User(name, pass, id, phone);
-            list.add(u);
-            User s = list.get(0);
-            String k = s.getName();
-            System.out.println(s.getName());
-            System.out.println("user name is: " + k);
+            User u = new User(name, pass, id, phone); // 创建用户对象
+            list.add(u); //添加对象进入list
+            System.out.println("user has been added");
+            printList(list);
+        }
+
+        private static String setPassWord() {
+            System.out.println("Please enter Password");
+            String pass = sc.next();
+            while(true){
+                System.out.println("Please enter Password again");
+                String pass2 = sc.next();
+                if(pass.equals(pass2)){
+                    System.out.println("Password is set");
+                    return pass;
+                }else{
+                    System.out.println("two time password doesn't same");
+                }
+            }
+        }
+
+        private static void printList(ArrayList<User> list) {
+            User u = new User();
+            for(int i = 0; i < list.size(); i++){
+                u = list.get(i);
+                System.out.println(u.getName() + "\t" + u.getPass() + "\t" + u.getPerson() + "\t" + u.getPhone());
+            }
+            
         }
 
         private static boolean checkPhone(String phone) {
@@ -113,9 +126,50 @@
             return true;
         }
 
-        public static void forgotPass(ArrayList<User> list){
-            System.out.println("forgot password");
+        private static void forgotPass(ArrayList<User> list){
+            System.out.println("Please enter your user name: ");
+            //录入用户名，确认用户名存在。
+            String name = sc.next();
+            int index = verifyIndex(list, name);
+            if(index >= 0){
+                System.out.println("this user is exist. ");
+                User u = list.get(index);
+                while(true){
+                    System.out.println("Please enter id to verify your information ");
+                    String id =sc.next();
+                    System.out.println("Please enter phone to verify your information");
+                    String phone = sc.next();
+                    boolean flag = checkPhoId(u,id,phone);
+                    if(flag){
+                        String pass = setPassWord();
+                        u.setPass(pass);
+                    }else{
+                        System.out.println("the information verify failed, please enter again");
+                        continue;
+                    }
+                }
+            }
         }
+
+        private static int verifyIndex(ArrayList<User> list, String name) {
+            User u = new User();
+            for (int i =0; i < list.size(); i++) {
+                u = list.get(i);
+                if (u.getName().equals(name)) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        private static boolean checkPhoId(User u, String id, String phone) {
+                if(u.getPerson().equals(id) && u.getPhone().equals(phone)){
+                    System.out.println("information verified. ");
+                    return true;
+                }
+            return false;
+        }
+        
 
         private static boolean checkUser(String user){
             int len = user.length();
@@ -140,12 +194,9 @@
             return count > 0;
         }
         
-        private static boolean varifyUser(ArrayList<User> list, String user){
-            for(int i=0; i<list.size(); i++){
-                User u = list.get(i);
-                String name = u.getName();
-                System.out.println(name);
-                if(name.equals(user)){
+        private static boolean verifyUser(ArrayList<User> list, String user) {
+            for (User u : list) {
+                if (u.getName().equals(user)) {
                     return true;
                 }
             }
@@ -173,6 +224,31 @@
                 return false;
             }
             return true;
+        }
+
+        //生成一个验证码
+        private static String getCode(){
+            ArrayList<Character> list = new ArrayList<>();
+            // 创建一个包含随机出现内容字符的list
+            for(int i = 0; i < 26; i++){
+                list.add((char)('a'+ i)); //'a'+ i = (char)98 
+                list.add((char)('A'+ i));
+                if(i<=9){
+                    list.add((char)('0' + i));
+                }
+            }
+
+            Random r = new Random();
+            StringBuilder s = new StringBuilder();
+
+            for(int i = 0; i < 4; i++){
+                //获取随机索引
+                int index = r.nextInt(list.size());
+                char c = list.get(index);
+                s.append(c);
+            }
+        
+            return s.toString();
         }
 
     }
