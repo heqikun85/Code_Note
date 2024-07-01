@@ -2,6 +2,7 @@
 ## 一、常用快捷键
 
 ==sout: 直接出现system.out.println==
+==psvm: 快捷创建 main class==
 | tab1 | tab2 |
 | ---- | ---- |
 | command + /   | 对代码进行注释，并且自动移动到下一行
