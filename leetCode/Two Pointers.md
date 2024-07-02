@@ -35,7 +35,7 @@ class Solution:
 
 
 2. 直接通过指针的方式逐帧移动，来对比input str的每个字符是否一致。
-   ![image](https://github.com/heqikun85/Code_Note/blob/main/image/20231231154431.png?raw=true)
+   ![image](./20231231154431.png)
 
    这种方法需要用到ASCii码来验证每个字符是否是非字母串。
    **数字串第一个是0，从编号48开始，到57. 字母串upper从A到Z，65-90，lower从a到z，97-122**

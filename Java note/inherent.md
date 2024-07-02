@@ -22,7 +22,7 @@ object就是封装对应的数据，并提供数据对应的行为。理解起�
 当multiple class之间存在共性内容，并且child class是 parent class的一种，就可以考虑继承来优化代码。
 
 **实例 - 一个继承关系图：**
-![image](https://github.com/heqikun85/Code_Note/blob/main/image/1719561647275.jpg?raw=true)
+![image](./1719561647275.jpg)
 ```Java
 //Parent class
 public class Animal {
