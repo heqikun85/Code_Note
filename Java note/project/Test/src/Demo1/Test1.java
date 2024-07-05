@@ -2,18 +2,12 @@ package Demo1;
 
 public class Test1 {
     public static void main(String[] args) {
-        int[] rabbit = new int[12];
-        rabbit[0] = 1;
-        rabbit[1] = 1;
+        //1.前序遍历：当前节点，左子节点，右子节点
 
-        System.out.println(getSum(12));
-    }
+        //2.中序遍历：左子节点，当前节点，右子节点
 
-    public static int getSum(int month) {
-        if (month == 1 || month == 2) {
-            return 1;
-        } else {
-            return getSum(month - 1) + getSum(month - 2);
-        }
+        //3.后序遍历：左子节点，右子节点，当前节点
+
+        //4.层序遍历：一层一层的去遍历
     }
 }
