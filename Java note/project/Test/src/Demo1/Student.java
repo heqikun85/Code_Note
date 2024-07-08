@@ -1,6 +1,8 @@
 package Demo1;
 
-public class Student {
+import java.util.Objects;
+
+public class Student implements Comparable<Student> {
     // 属性：姓名，年龄，性别
     private String name;
     private int age;
@@ -45,8 +47,27 @@ public class Student {
         System.out.println(name + "正在学习");
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return age == student.age && Objects.equals(name, student.name) && Objects.equals(gender, student.gender);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age, gender);
+    }
+
     public void show(){
         System.out.println(name +", " + age + ", " + gender + ", " + teacherName);
     }
 
+
+
+    @Override
+    public int compareTo(Student o) {
+        return this.getAge() - o.getAge();
+    }
 }
