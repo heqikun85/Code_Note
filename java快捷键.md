@@ -1,4 +1,9 @@
 # Java介绍
+ctrl + alt + v
+ctrl + alt + enter
+ctrl + enter
+alt + enter
+
 ### 1.常用快捷键
     ctrl + A : 全选
     ctrl + S: 保存
