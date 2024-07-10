@@ -1,18 +1,18 @@
 package Demo1;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Test1 {
     public static void main(String[] args) {
-        //可变参数：function的参数个数是可以变化的。
-        //格式：function_name(type...name){}
-        System.out.println(getSum(5,19,30,44));
-    }
+        ArrayList<String> s = new ArrayList<>();
+        Collections.addAll(s,"zhang san", "li si", "wang wu", "zhang liu", "zhang wu ji", "zhao ming", "zhang san feng");
 
-    private static int getSum(int...args) {
-        int sum = 0;
-        for (int arg : args) {
-            sum += arg;
-        }
-        return sum;
+        // 仅遍历并显示key
+        long count = s.stream().count();
+        System.out.println(count);
+
+        //
+
     }
 }
- 
