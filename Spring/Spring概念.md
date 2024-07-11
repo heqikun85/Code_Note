@@ -50,7 +50,7 @@
 1. 初级实现： 导入jar package --- 配置xml 
    * [spring jar package repository （spring jar包仓库）](repo.spring.io/webapp/#/home)
    * 已淘汰，不实用
-2. [一般实现： maven + @注释 + xml](#table1)
+2. **[一般实现： maven + @注释 + xml](#table1)**
 3. highest：Springboot + javaconfig
 
 ### Maven 
@@ -66,7 +66,10 @@ maven可以通过坐标来获取jar package。这个坐标的组成为：公司/
 *  deploy:打包后将其安装到pom文件中配置的远程仓库
 *  site:生成站点目录
 
-<a id="table1">Maven创建Spring框架项目</a>
+### <a id="table1">Maven创建Spring框架项目</a>
+   
+   我们能通过IDEA创建一个Maven的project，maven能够导入Spring框架。
+   
    1. 需要导入jar package，配置maven依赖
    2. 去[maven repository](https://mvnrepository.com/) search spring, 打开spring context最新版本，复制下面的代码
    ![](./image/1720600145274.jpg)
@@ -85,3 +88,17 @@ maven可以通过坐标来获取jar package。这个坐标的组成为：公司/
 ```
 然后enable auto import，开启自动导入。
 * context包是一个jar总入口，
+
+**Maven 创建项目的结构**
+
+|-- src                 源码
+|--|-- main             存放主程序
+|--|--|-- java          存放java源文件
+|--|--|-- resources     存放框架或其他工具的配置文件
+|--|-- test             存放测试程序
+|--|--|-- java          存放java测试的源文件
+|--|--|-- resources     存放测试的配置文件
+|-- pom.xml             Maven工程的核心配置文件
+
+我们可以在mian -- java文件夹下创建新的文件夹或文件来编写method function 或 class等。
+然后在main -- resources 文件夹下创建一个.xml文件，来配置这些代码关系
