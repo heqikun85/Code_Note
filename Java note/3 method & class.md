@@ -1,3 +1,5 @@
+[返回目录](./1.%20java学习目录.md)
+
 ## Java method
 由于java和C++最大的区别就是对class的应用上，Java是建立在class的基础上  
 所以Java的method其实可以理解为C++内的一个function

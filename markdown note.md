@@ -1,6 +1,10 @@
-# Markdown note
+d# Markdown note
 
 Ctrl + K + V
+Ctrl + K + C  大注释
+减少缩进 : Com + [
+增加缩进 : Com + ]
+Com + 数字 1- 6 可以快速将选中的文本调成对应级别的标签
 
 ## Code Comments
 
