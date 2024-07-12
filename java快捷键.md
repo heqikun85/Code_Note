@@ -1,8 +1,21 @@
-# Java介绍
-ctrl + alt + v
-ctrl + alt + enter
+# Java介绍 **mac中大部分情况command就是ctrl的作用**
+
+ctrl + alt + v  
+
+ctrl + alt + enter  
+
 ctrl + enter
+
 alt + enter
+
+command+N
+   * 光标在代码编辑界面时，生成setter getter等方法
+   * 光标在左侧工程结构时，创建新类/包等
+
+alt+command+L 格式化代码
+
+shift+alt+⬇️ 将当前代码整体下移一行(上移同理)
+
 
 ### 1.常用快捷键
     ctrl + A : 全选

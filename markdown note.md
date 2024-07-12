@@ -1,6 +1,7 @@
 # Markdown note
 
 Ctrl + K + V
+Ctrl + K + C  大注释
 
 ## Code Comments
 
