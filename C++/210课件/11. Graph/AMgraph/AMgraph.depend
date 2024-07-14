@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1446592628 source:c:\users\cpentcheva481\documents\amgraph\main.cpp
+	<iostream>
+	<cstdlib>
+	<fstream>
+	<cstring>
+
+1524160281 source:c:\users\caterina\desktop\amgraph\main.cpp
+	<iostream>
+	<cstdlib>
+	<fstream>
+	<cstring>
+
