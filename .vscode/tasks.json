@@ -14,7 +14,8 @@
             "group": "build",
             "problemMatcher": [
                 "$gcc"
-            ]
+            ],
+            "detail": "Generated task by Debugger."
         },
         {
             "type": "cppbuild",

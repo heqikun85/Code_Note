@@ -2,16 +2,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Launch",
+            "name": "Debug C++",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+            "program": "${workspaceFolder}/example.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
+            "miDebuggerPath": "C:/Program Files/mingw-w64/bin/gdb.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
@@ -20,12 +21,8 @@
                 }
             ],
             "preLaunchTask": "build",
-            "miDebuggerPath": "c:\\Program Files\\mingw-w64\\bin\\gdb.exe",
-            "logging": {
-                "trace": true,
-                "traceResponse": true,
-                "engineLogging": true
-            }
+            "internalConsoleOptions": "openOnSessionStart"
         }
     ]
-}
+ }
+ 
