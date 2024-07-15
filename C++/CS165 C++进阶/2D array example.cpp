@@ -4,7 +4,7 @@
 #include <fstream>
 #include <vector>
 using namespace std;
-/*
+
 int main(){
 	int array[4][4] = { {1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16} };
 	int array2[5][5] = { {1,2,3,4,5},{6,7,8,9,10},{11,12,13,14,15},{16,17,18,19,20},{21,22,23,24,25} };
@@ -37,8 +37,7 @@ int main(){
 	system("pause");
 	return 0;
 }
-*/
-/*
+
 int main() {
 	int count = 0;
 	string file_line;
@@ -53,7 +52,7 @@ int main() {
 	system("pause");
 	return 0;
 
-}*/
+}
 
 int main(){
    cout << (71.626+71.299+72.236)/3;
