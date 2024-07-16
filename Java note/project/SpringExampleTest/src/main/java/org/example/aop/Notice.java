@@ -1,7 +1,9 @@
 package org.example.aop;
 
+import org.aspectj.lang.annotation.Pointcut;
+
 public class Notice {
-    @Pointcut
+    @Pointcut // 该注释是在
     private void pt(){}
 
     void method(){
