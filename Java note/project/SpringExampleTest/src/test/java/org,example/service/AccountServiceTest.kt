@@ -1,24 +1,25 @@
 package `org,example`.service
 
 import org.example.config.SpConfig
+import org.example.domain.Account
 import org.example.service.AccountService
-import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Autowired as Autowired1
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SpConfig.class)
-public class AccountServiceTest {
-    @Autowired
+class AccountServiceTest {
+    @Autowired1
     private AccountService accountService;
 
     @Test
     public void testFindById(){
-        org.example.domain.Account ac = accountService.findById(2);
+        Account ac = accountService.findById(2);
         System.out.println(ac);
     }
 
     @Test
     public void testFindAll(){
-        List<Account> all = accountService.findAll();
+        List<org.example.domain.Account> all = accountService.findAll();
         println(all)
     }
 }
