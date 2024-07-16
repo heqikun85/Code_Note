@@ -8,10 +8,23 @@ import org.springframework.stereotype.Repository;
 @Repository("sDao")
 public class SpringDaoImpl implements SpringDao{
     @Value("${name}")
-    private String name;
+    //private String name;
 
-    @Override
     public void save() {
-        System.out.println("this is SpringDao ... " + name);
+        long startTime = System.currentTimeMillis();
+        System.out.println(startTime);
+        System.out.println("SpringDao ... save");
+    }
+
+    public void update() {
+        System.out.println("SpringDao ... update");
+    }
+
+    public void delete(){
+        System.out.println("SpringDao ... delete");
+    }
+
+    public void select(){
+        System.out.println("SpringDao ... select");
     }
 }
