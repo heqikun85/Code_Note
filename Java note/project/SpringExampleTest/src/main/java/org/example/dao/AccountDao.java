@@ -18,6 +18,4 @@ public class AccountDao {
 
     @Select("select * from tbl_account where id = #{id}")
     void findById(Integer id);
-
-
 }

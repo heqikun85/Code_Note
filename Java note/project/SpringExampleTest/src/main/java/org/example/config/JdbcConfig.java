@@ -6,19 +6,18 @@ import org.springframework.context.annotation.Bean;
 
 import javax.sql.DataSource;
 
-//@Configuration
-public class jdbcConfig {
-    @Value("com.mysql.jdbc.Driver")
+public class JdbcConfig {
+    @Value("${jbdc.driver}")
     private String driver;
-    @Value("jdbc:mysql://localhost:3306/spring_db")
+    @Value("${jdbc.url}")
     private String url;
-    @Value("root")
+    @Value("${jdbc.username}")
     private String username;
-    @Value("root")
+    @Value("${jdbc.password}")
     private String password;
 
     @Bean
-    public DataSource DataSource(){
+    public DataSource dataSource(){
         DruidDataSource dataSource= new DruidDataSource();
         dataSource.setDriverClassName(driver);
         dataSource.setUrl(url);
