@@ -1,2 +1,4 @@
-package org.example.domain;public class Account {
+package org.example.domain;
+
+public class Account {
 }

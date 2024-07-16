@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository("sDao")
 public class SpringDaoImpl implements SpringDao{
     @Value("${name}")
-    //private String name;
+    private String name;
 
     public void save() {
         long startTime = System.currentTimeMillis();
@@ -24,7 +24,8 @@ public class SpringDaoImpl implements SpringDao{
         System.out.println("SpringDao ... delete");
     }
 
-    public void select(){
-        System.out.println("SpringDao ... select");
+    public int select(){
+        System.out.println("select is running");
+        return 100;
     }
 }

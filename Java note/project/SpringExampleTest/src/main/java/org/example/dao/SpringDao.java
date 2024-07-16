@@ -7,5 +7,5 @@ public interface SpringDao {
 
     abstract void delete();
 
-    abstract void select();
+    abstract int select();
 }

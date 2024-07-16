@@ -8,6 +8,7 @@ public class AOP {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(springconfig.class);
         SpringDao dao = ctx.getBean(SpringDao.class);
-        dao.save();
+        int num = dao.select();
+        System.out.println(num);
     }
 }
