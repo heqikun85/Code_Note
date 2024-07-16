@@ -12,7 +12,7 @@ public class AccountServiceTest {
 
     @Test
     public void testFindById(){
-        Account ac = accountService.findById(2);
+        org.example.domain.Account ac = accountService.findById(2);
         System.out.println(ac);
     }
 
