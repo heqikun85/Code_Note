@@ -7,4 +7,5 @@
     <!--    <bean class="org.example.service.Impl.SpringServiceImpl" id="sService">-->
     <!--        <property name="springDao" ref="sDao"/>-->
     <!--    </bean>-->
+    <context:property-placeholder location="db.properties"/>
 </beans>

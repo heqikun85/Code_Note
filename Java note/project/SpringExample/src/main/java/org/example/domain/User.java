@@ -5,9 +5,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class User {
+    // 使用Value注入信息，注意：一般都是应用外部导入的数据。
+    // @Value(${}) / @Value(#{})
     @Value("Kevin He")
     private String name;
-
+    @Value("#{role.age}")
+    private int age;
+    @Value("${mySql.address}")
+    private String address;
 
     public User() {
     }
@@ -30,6 +35,6 @@ public class User {
         this.name = name;
     }
     public String toString() {
-        return "User{name = " + name + "}";
+        return "User{name = " + name + " age = " + age + " address = " + address + "}";
     }
 }
