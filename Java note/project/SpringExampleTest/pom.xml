@@ -12,7 +12,6 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <kotlin.version>2.0.0</kotlin.version>
         <spring-boot.version>2.7.3</spring-boot.version> <!-- Spring Boot 版本 -->
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version> <!-- Maven Compiler Plugin 版本 -->
     </properties>
@@ -46,11 +45,17 @@
             <version>1.9.6</version>
         </dependency>
 
-        <!-- JUnit -->
+        <!-- JUnit 5 依赖 -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
 
@@ -124,5 +129,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

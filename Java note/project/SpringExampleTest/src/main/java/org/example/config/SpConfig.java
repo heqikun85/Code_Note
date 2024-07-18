@@ -9,6 +9,5 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @ComponentScan("org.example")
 @PropertySource("classpath:jdbc.properties")
-@Import({JdbcConfig.class,MybatisConfig.class})
 public class SpConfig {
 }

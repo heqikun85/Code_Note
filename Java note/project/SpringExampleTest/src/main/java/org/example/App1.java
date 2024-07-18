@@ -1,6 +1,5 @@
 package org.example;
 
-import org.example.config.jdbcConfig;
 import org.example.config.springconfig;
 import org.example.dao.Impl.SpringDaoImpl;
 import org.example.dao.SpringDao;
