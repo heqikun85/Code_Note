@@ -1,19 +1,10 @@
 # Vue教程
-
-1. [创建Vue项目](#table1)
-2. [HTML&CSS基础](./HTML&CSS基础.md)
-3. [响应式调用](./响应式调用.md)
-4. [attribute & 事件监听 & 表单绑定 & class绑定](./attribute_class绑定.md)
-5. [条件/列表渲染](./条件_列表渲染.md)
-6.  [计算属性](./计算属性.md)
-7.  [生命周期和模板引用 & 侦听器（有异步function的写法）](./模版引用_侦听器.md) 
-8.  [Vue组件应用](./vue组件.md)
-9.  [子组件/Props & Emits](./子组建_Emits.md)
-10. [ArrayList更新](#table2)
-11. [插槽slot](./插槽slo.md)
-12. [动态组件](./动态组件.md)
-13. [异步组件](./异步组件.md)
-
+|1. [创建Vue项目](#table1)|2. [HTML&CSS基础](./HTML&CSS基础.md)|3. [响应式调用](./响应式调用.md)|
+|---|---|---|
+|4. [属性&事件&表单&class绑定](./attribute_class绑定.md)|5. [条件/列表渲染](./条件_列表渲染.md)|6.  [计算属性](./计算属性.md)
+|7.  [生命周期和模板引用 & 侦听器（有异步function的写法）](./模版引用_侦听器.md) |8.  [Vue组件应用](./vue组件.md)| 9.  [子组件/Props & Emits](./子组建_Emits.md)
+|10. [ArrayList更新](#table2)|11. [插槽slot](./插槽slo.md)|12. [动态组件](./动态组件.md)
+|13. [异步组件](./异步组件.md)||
 
 ### <a id="table1">创建Vue项目</a>
 在teminal中运行：`npm create vue@latest` or `npm init vue@latest`
