@@ -50,7 +50,7 @@ input_file = '/Users/kevinhe/IdeaProjects/4.txt'
 
 # 定义表名和字段名，不包括id字段
 table_name = 'user'
-fields = ['name', 'phone', 'email', 'profession', 'age', 'gender', 'status', 'createtime']
+fields = ['id','name', 'phone', 'email', 'profession', 'age', 'gender', 'status', 'createtime']
 
 # 准备插入语句的前半部分
 insert_prefix = f"INSERT INTO {table_name} ({', '.join(fields)}) VALUES "
@@ -61,17 +61,14 @@ with open(input_file, 'r') as file:
 
 # 生成并打印SQL语句
 for line in lines:
-    # 使用split()以制表符为分隔符分割字段
-    values = line.strip().split('\t')
+    # 使用split()以空格为分隔符分割字段
+    values = line.strip().split()
 
     # 将各字段值按类型用引号包裹（字符串类型用引号，数字类型不需要）
     formatted_values = []
     for i, value in enumerate(values):
-        # 如果值为空，设置为NULL
-        if value == '':
-            formatted_values.append("NULL")
         # 根据字段类型判断是否需要引号
-        elif fields[i] in ['age', 'gender', 'status']:
+        if fields[i] in ['age', 'gender', 'status']:
             formatted_values.append(value)  # 不加引号
         else:
             formatted_values.append(f"'{value}'")  # 加引号
