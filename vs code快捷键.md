@@ -29,13 +29,14 @@ Command + Shift + Option + PgUp 列选择 向上翻页
 Command + Shift + Option + PgDown 列选择 向下翻页
 
 查找替换
-Command + F 查找
-Command + Option + F 替换
-Command + G 查找下一个
-Command + Shift + G 查找上一个
+com + shift + H  查找替换全部
+Com + F 查找
+Com + Option + F 替换
+Com + G 查找下一个
+Com + Shift + G 查找上一个
 Option + Enter 选中所有匹配项
-Command + D 向下选中相同内容
-Command + K Command + D 移除前一个向下选中相同内容
+Com + D 向下选中相同内容
+Com + K  Com + D 移除前一个向下选中相同内容
 
 进阶
 Ctrl + Space 打开建议
