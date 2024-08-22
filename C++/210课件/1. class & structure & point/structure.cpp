@@ -57,6 +57,8 @@ void output(const Student& s) // a void function
   cout.width(10);
   cout << s.gpa << endl;
 }
+
+/*
 What Should you notice from the above code
 1.	the struct declaration with its "attributes" (or "fields" or "data members" or "properties"),
 2.	the use of the "dot operator" (or "member of") to access attributes of the objects,
@@ -78,4 +80,4 @@ And here are some formatting specifics you should know:
 2.	cout.precision says how many significant digits to show for floating point numbers or how many decimal digits depending on whether ios::fixed is set.
 3.	To unset a setting, it's cout.unsetf(ios::fixed).
 4.	cout.width says how many spaces to allocate to the very next output value only, right justified.
-
+*/
