@@ -1,11 +1,12 @@
 ## LeeCode刷题
 
-1. [Reverse Linked List 反向链接表](#table1)
-2. [Merge Two Sorted Lists  合并两个排序列表](#table2)
-3. [Reorder List  重新排序列表](#table3)
-4. [Remove Nth Node From End of List  从列表末尾移除第 N 个节点](#table4)
-5. [Copy List With Random Pointer  用随机指针复制列表](#table5)
-6. [Add Two Numbers  添加两个数字](#table6)
+- [LeeCode刷题](#leecode刷题)
+  - [ 1. Reverse Linked List 反向链接表](#-1-reverse-linked-list-反向链接表)
+  - [ 2. Merge Two Sorted Lists  合并两个排序列表](#-2-merge-two-sorted-lists--合并两个排序列表)
+  - [ 3. Reorder List  重新排序列表](#-3-reorder-list--重新排序列表)
+  - [ 4. Remove Nth Node From End of List  从列表末尾移除第 N 个节点](#-4-remove-nth-node-from-end-of-list--从列表末尾移除第-n-个节点)
+  - [ 5. Copy List With Random Pointer  用随机指针复制列表](#-5-copy-list-with-random-pointer--用随机指针复制列表)
+  - [ 6. Add Two Numbers  添加两个数字](#-6-add-two-numbers--添加两个数字)
 
 
 ### <a id= "table1"> 1. Reverse Linked List 反向链接表</a>
