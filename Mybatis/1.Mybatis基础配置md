@@ -7,40 +7,40 @@ JavaEE三层架构:表现层、业务层、持久层
 
 ### Mybatis pom.xml坐标
 ```xml
-    <!--mybatis 依赖-->
+    <!-- mybatis 依赖 -->
     <dependency>
         <groupId>org.mybatis</groupId>
         <artifactId>mybatis</artifactId>
         <version>3.2.1</version>
     </dependency>
 
-<!--其他依赖-->
-    <!--mysql 驱动-->
+<!-- 其他依赖 -->
+    <!-- mysql 驱动 -->
     <dependency>
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
         <version>5.1.46</version>
     </dependency>
-    <!--junit 单元测试-->
+    <!-- junit 单元测试 -->
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.13.2</version>
         <scope>test</scope>
     </dependency>
-    <!--添加s1f4j日志api.-->
+    <!-- 添加s1f4j日志api -->
     <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
         <version>1.7.20</version>
     </dependency>
-    <!--添加logback-classic依赖·-->
+    <!-- 添加logback-classic依赖 -->
     <dependency>
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
         <version>1.2.3</version>
     </dependency>
-    <!--添加logback-core依赖·-->
+    <!-- 添加logback-core依赖 -->
     <dependency>
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-core</artifactId>
@@ -50,10 +50,10 @@ JavaEE三层架构:表现层、业务层、持久层
 
 ### 其他xml配置文件
 ```xml
-<!--logback.xml-->
+<!-- logback.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-<!-- console表示当前日志信息是可以输出到控制台的-->
+<!-- console表示当前日志信息是可以输出到控制台的 -->
     <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>【%level】  %cyan(【%thread】) %boldGreen(%logger{15}) - %msg %n</pattern>
@@ -63,20 +63,27 @@ JavaEE三层架构:表现层、业务层、持久层
         <appender-ref ref="Console"/>
     </logger>
 </configuration>
+<!-- 分割线 -->
 
-<!--mybatis-config.xml-->
+<!-- mybatis-config.xml -->
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!-- 包扫描，自动注册别名 -->
+    <typeAliases>
+        <!-- 扫描 com.kxfevr.entity 包下的所有类，并使用类名作为别名（首字母小写） -->
+        <package name="com.kxfevr.entity"/>
+    </typeAliases>
+
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
-                <!--数据库连接信息-->
+                <!-- 数据库连接信息 -->
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <!--注意服务器地址-->
+                <!-- 注意服务器地址 -->
                 <property name="url" value="jdbc:mysql://127.0.0.1:3307/mybatis?useSSL=false"/>
                 <property name="username" value="Kevin"/>
                 <property name="password" value="1234"/>
@@ -84,25 +91,54 @@ JavaEE三层架构:表现层、业务层、持久层
         </environment>
     </environments>
     <mappers>
-        <!--sql映射文件-->
-        <mapper resource="UserMapper.xml"/>
+        <!-- sql映射文件,完整包地址 -->
+        <mapper resource="com/kxfevr/mapper/UserMapper.xml"/>
     </mappers>
 </configuration>
+<!-- 分割线 -->
 
-<!--主要sql语句配置xml-->
+<!-- xxxMapper.xml -->
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <!--
-    namespace
+    namespace: 像html的id一样，用来定位代码区块的
+    mapper block: 在mapper block内编写sql语句，使用id作为class name一样调用
 -->
 <mapper namespace="test">
     <select id="selectALL" resultType="com.kxfevr.User">
         select * from tb_user;
     </select>
 </mapper>
+```
+
+### 接口定义
+1. 定义与SQL映射文件同名的Mapper接口，并且将Mapper接口和SQL映射文件放置在同一目录下。
+   * 这个概念其实就是在java目录下的mapper文件路径，和在resources下的xml文件路径一样即可。不需要物理上在同意文件夹，但路径名和顺序必须一样。
+2. 设置SQL映射文件的namespace属性为Mapper接口全限定名
+   * `<mapper namespace="com.kxfevr.mapper.UserMapper">`
+3. 在 Mapper 接口中定义方法，方法名就是SQL映射文件中sql语句的id，并保持参数类型和返回值类型一致
+```java
+/*
+    xxxMapper.java：Mybatis接口文件
+    就是给Mapper.xml中的sql语句写一个接口。
+    然后可以将这些sql语句作为方法调用
+    这里举例用上面的selectALL
+*/
+public interface UserMapper {
+    List<User> selectALL();
+}
+-----------------------------------------
+// entity 实体层：需要建立一个和数据库中参数相同的实体层object。
+// 记得要有java bean
+public class User {
+    private int id ;
+    private String username;
+    private  String password;
+    private char gender;
+    private String addr;
+}
 ```
 
 ### Main函数释放
@@ -124,6 +160,26 @@ JavaEE三层架构:表现层、业务层、持久层
         //4.释放资源
         sqlSession.close();
 ```
+
+1. 编码
+   1.  通过 SqlSession 的 getMapper方法获取 Mapper接囗的代理对象
+   2.  调用对应方法完成sql的执行
+   
+    ```java
+    //3. 获取按口代理对象
+    UserMapper userMapper = sqlSession.getMapper(UserMapper.class)
+    //4. 执行方法，其实就是执行sql语句
+    List<User> users = userMapper.selectAll();
+    ```
+
+* 细节:如果Mapper接口名称和SQL映射文件名称相同，并在同一目录下，则可以使用包扫描的方式简化SQL映射文件的加载
+    ```xml
+    <mappers>
+        <!--加载sql的映射文件-->
+        <!--<mapper resource="com/itheima/mapper2/UserMapper.xml"/>-->
+        <package name="com.itheima.mapper"/>
+    </mappers>
+    ``` 
 
 
 
