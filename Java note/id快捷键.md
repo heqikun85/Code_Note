@@ -6,7 +6,8 @@
 | tab1 | tab2 |
 | ---- | ---- |
 | command + /   | 对代码进行注释，并且自动移动到下一行
-|command + N | 生成构造函数，get、set方法 |
+| command + shift + / | 注释代码块
+|command + N | 生成构造函数，get、set方法 
 |command + P    |      显示被调用的函数的参数属性。
 | command + F     |     在当前文件进行文本查找
 | command+shift+F |     进行工程和模块中的文件搜索（全局搜索）
