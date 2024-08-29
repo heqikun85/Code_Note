@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,7 @@ import java.util.Map;
 public class MyBatisTest {
     @Test
     public void testDelete2() throws IOException {
-        int id = 6;
+        int[] id = {12,13,14};
 
         //1.加载mybatis的核心配置文件，获取 SqlSessionFactory
         String resource = "mybatis-config.xml";
@@ -32,7 +33,7 @@ public class MyBatisTest {
         //3.执行sql语句，传入xml里的id，namespace作为标识，id作为索引
         BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
 
-        brandMapper.delete(id);
+        brandMapper.delete2(id);
 
         //4.释放资源
         //sqlSession.commit();
