@@ -1,7 +1,9 @@
 package com.kxfevr;
 
 import com.kxfevr.entity.Brand;
+import com.kxfevr.entity.User;
 import com.kxfevr.mapper.BrandMapper;
+import com.kxfevr.mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -17,6 +19,28 @@ import java.util.Map;
 
 
 public class MyBatisTest {
+    @Test
+    public void Annotation_Development() throws IOException {
+        //1.加载mybatis的核心配置文件，获取 SqlSessionFactory
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //2.获取SQLSession对象，用它来执行SQL
+        //SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = sqlSessionFactory.openSession(true);
+
+        //3.执行sql语句，传入xml里的id，namespace作为标识，id作为索引
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        List<User> user = userMapper.selectALL();
+
+        System.out.println(user);
+        //4.释放资源
+        //sqlSession.commit();
+        sqlSession.close();
+    }
+
     @Test
     public void testDelete2() throws IOException {
         int[] id = {12,13,14};

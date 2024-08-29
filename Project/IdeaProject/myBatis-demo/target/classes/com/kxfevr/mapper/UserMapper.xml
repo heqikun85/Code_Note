@@ -7,10 +7,10 @@
     namespace
 -->
 <mapper namespace="com.kxfevr.mapper.UserMapper">
-    <select id="selectALL" resultType="com.kxfevr.entity.User">
+<!--    <select id="selectALL" resultType="com.kxfevr.entity.User">
         select * from tb_user;
     </select>
     <select id="selectById" resultType="com.kxfevr.entity.User">
         select * from tb_user where id = "";
-    </select>
+    </select>-->
 </mapper>

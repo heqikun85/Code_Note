@@ -77,7 +77,6 @@
         values (#{brandName}, #{companyName}, #{ordered}, #{description}, #{status});
     </insert>
 
-<<<<<<< HEAD
     <insert id="add2" useGeneratedKeys="true" keyProperty="id">
         insert into tb_brand (brand_name, company_name, ordered, description, status)
         values (#{brandName}, #{companyName}, #{ordered}, #{description}, #{status});
@@ -92,17 +91,6 @@
         where id = #{id};
     </update>
 
-=======
-    <update id="update2">
-        update tb_brand set brand_name = #{brandName},
-        company_name = #{companyName},
-        ordered = #{ordered},
-        description = #{description},
-        status = #{status}
-        where id = #{id};
-    </update>
-
->>>>>>> origin/main
     <update id="update">
         update tb_brand
         <set>
@@ -128,8 +116,6 @@
     <delete id="delete">
         delete from tb_brand where id = #{id};
     </delete>
-
-<<<<<<< HEAD
     <!--
     mybatis会将数组参数，封装为一个Map集合:
     *默认:array = 数组
@@ -140,10 +126,6 @@
         <foreach collection="ids" item="id" separator="," open="(" close=")">
             #{id}
         </foreach>
-=======
-    <delete id="delete2">
-        <!-- 待补充 -->
->>>>>>> origin/main
     </delete>
 
 </mapper>
