@@ -1,6 +1,6 @@
 package com.kxfevr.pojo;
 
-public class User {
+public class User1 {
     private Long id;
 
     private String username;
@@ -19,10 +19,10 @@ public class User {
 
     private String updateTime;
 
-    public User() {
+    public User1() {
     }
 
-    public User(Long id, String username, String password, String phone, String info, Integer status, Integer balance, String createTime, String updateTime) {
+    public User1(Long id, String username, String password, String phone, String info, Integer status, Integer balance, String createTime, String updateTime) {
         this.id = id;
         this.username = username;
         this.password = password;
