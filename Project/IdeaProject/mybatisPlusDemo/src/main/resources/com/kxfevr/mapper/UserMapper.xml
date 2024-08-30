@@ -1,16 +1,67 @@
-package com.kxfevr.mapper;
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.kxfevr.pojo.User;
-import org.apache.ibatis.annotations.Param;
+<!--
+    namespace
+-->
+<mapper namespace="com.kxfevr.mapper.UserMapper">
 
-import java.util.List;
+    <insert id="saveUser">
+        INSERT INTO user (id, username, password, phone, balance, info, create_time, update_time)
+        VALUES (#{id}, #{username}, #{password}, #{phone}, #{balance}, #{info}, #{createTime}, #{updateTime})
+    </insert>
 
-public interface User1Mapper extends BaseMapper<User> {
-    void saveUser(User user);
-    void deleteUser(Long id);
-    void updateUser(User user);
-    User1 queryUserById(@Param("id")Long id);
-    List<User> queryUserByIds(@Param("ids") List<Long> ids);
+    <update id="updateUser">
+        UPDATE user
+        <set>
+            <if test="username != null and username != ''">
+                username = #{username},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="info != null and info != ''">
+                info = #{info},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status},
+            </if>
+            <if test="balance != null and balance != ''">
+                balance = #{balance},
+            </if>
 
-        }
+            <if test="createTime != null and createTime != ''">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null and updateTime != ''">
+                update_time = #{updateTime}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteUser">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
+
+    <select id="queryUserById" resultType="com.kxfevr.pojo.User">
+        SELECT * FROM user WHERE id = #{id}
+    </select>
+
+    <select id="queryUserByIds" resultType="com.kxfevr.pojo.User">
+        SELECT * FROM user
+        <if test="ids != null">
+            WHERE id IN
+            <foreach collection="ids" open="(" close=")" item="id" separator=",">
+                #{id}
+            </foreach>
+        </if>
+        LIMIT 10
+    </select>
+
+</mapper>
