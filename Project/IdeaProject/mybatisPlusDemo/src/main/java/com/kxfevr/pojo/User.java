@@ -8,9 +8,8 @@ import java.time.LocalDateTime;
 
 @TableName("mybatis")
 public class User {
-    // value 和 type可以省略
-    // type有四种：AUTO：自增长 INPUT：通过set方式自行输入 ASSIGN_ID：分配ID
-    @TableId(value = "id", type ="AUTO")
+
+    @TableId("id")
     private Long id;
     @TableField("username")
     private String username;
