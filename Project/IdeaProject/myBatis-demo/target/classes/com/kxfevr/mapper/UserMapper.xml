@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace
+-->
+<mapper namespace="com.kxfevr.mapper.UserMapper">
+<!--    <select id="selectALL" resultType="com.kxfevr.entity.User">
+        select * from tb_user;
+    </select>
+    <select id="selectById" resultType="com.kxfevr.entity.User">
+        select * from tb_user where id = "";
+    </select>-->
+</mapper>

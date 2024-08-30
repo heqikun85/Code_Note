@@ -5,12 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34fd21ca-ec74-4645-8d94-e1aea716c9e9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../myBatis-demo/src/main/resources/com/kxfevr/mapper/User1Mapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybatisPlusDemo/src/main/java/com/kxfevr/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybatisPlusDemo/src/main/java/com/kxfevr/pojo/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybatisPlusDemo/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybatisPlusDemo/src/main/resources/com/kxfevr/mapper/UserMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybatisPlusDemo/src/main/resources/logback.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybatisPlusDemo/src/main/resources/mybatis-config.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../myBatis-demo/src/main/java/com/kxfevr/mapper/User1Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../myBatis-demo/src/main/java/com/kxfevr/mapper/User1Mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../myBatis-demo/src/main/java/com/kxfevr/pojo/User1.java" beforeDir="false" afterPath="$PROJECT_DIR$/../myBatis-demo/src/main/java/com/kxfevr/pojo/User1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../myBatis-demo/src/test/java/com/kxfevr/MyBatisPlusTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../myBatis-demo/src/test/java/com/kxfevr/MyBatisPlusTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../myBatis-demo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/src/main/java/com/kxfevr/mapper/User1Mapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/src/main/java/com/kxfevr/pojo/User1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/src/main/resources/com/kxfevr/mapper/User1Mapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/src/test/java/com/kxfevr/MyBatisPlusTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../myBatis-demo/src/test/java/com/kxfevr/MyBatisTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../myBatis-demo/src/test/java/com/kxfevr/MyBatisTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/target/classes/com/kxfevr/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/target/classes/com/kxfevr/entity/Brand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/target/classes/com/kxfevr/entity/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/target/classes/com/kxfevr/mapper/BrandMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/target/classes/com/kxfevr/mapper/BrandMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/target/classes/com/kxfevr/mapper/User1Mapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/target/classes/com/kxfevr/mapper/User1Mapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/target/classes/com/kxfevr/mapper/UserMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/target/classes/com/kxfevr/mapper/UserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/target/classes/com/kxfevr/pojo/User1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/target/classes/logback.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/target/classes/mybatis-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/target/test-classes/com/kxfevr/MyBatisPlusTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myBatis-demo/target/test-classes/com/kxfevr/MyBatisTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +94,7 @@
       <workItem from="1724905919842" duration="94000" />
       <workItem from="1724924605557" duration="645000" />
       <workItem from="1724925366187" duration="474000" />
+      <workItem from="1724998091128" duration="596000" />
     </task>
     <servers />
   </component>

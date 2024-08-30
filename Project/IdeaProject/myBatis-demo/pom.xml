@@ -15,79 +15,45 @@
     </properties>
 
     <dependencies>
-        <!-- MyBatis-Plus -->
+        <!-- mybatis 依赖 -->
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.7</version>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.2.1</version>
         </dependency>
 
-        <!-- Spring Boot Starter -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <version>2.7.0</version> <!-- 添加版本号 -->
-        </dependency>
-
-        <!-- MySQL Driver -->
+        <!-- 其他依赖 -->
+        <!-- mysql 驱动 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.32</version> <!-- 更新为最新的MySQL驱动版本 -->
-            <scope>runtime</scope>
+            <version>5.1.46</version>
         </dependency>
-
-        <!-- Lombok -->
+        <!-- junit 单元测试 -->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.28</version> <!-- 明确版本 -->
-            <optional>true</optional>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
         </dependency>
-
-        <!-- SLF4J API -->
+        <!-- 添加s1f4j日志api -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.36</version> <!-- 更新为最新版本 -->
+            <version>1.7.20</version>
         </dependency>
-
-        <!-- Logback Classic -->
+        <!-- 添加logback-classic依赖 -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.11</version> <!-- 更新为最新版本 -->
+            <version>1.2.3</version>
         </dependency>
-
-        <!-- Logback Core -->
+        <!-- 添加logback-core依赖 -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
-            <version>1.2.11</version> <!-- 更新为最新版本 -->
-        </dependency>
-
-        <!-- JUnit for Testing -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <version>2.7.0</version> <!-- 添加版本号 -->
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Hutool -->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.8.11</version>
+            <version>1.2.3</version>
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>
