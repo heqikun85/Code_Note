@@ -7,7 +7,7 @@
     namespace
 -->
 <mapper namespace="com.kxfevr.mapper.UserMapper">
-
+<!--
     <insert id="saveUser">
         INSERT INTO user (id, username, password, phone, balance, info, create_time, update_time)
         VALUES (#{id}, #{username}, #{password}, #{phone}, #{balance}, #{info}, #{createTime}, #{updateTime})
@@ -63,5 +63,6 @@
         </if>
         LIMIT 10
     </select>
+-->
 
 </mapper>
