@@ -1,5 +1,7 @@
 package com.kxfevr.pojo;
 
+import java.time.LocalDateTime;
+
 public class User1 {
     private Long id;
 
@@ -15,14 +17,14 @@ public class User1 {
 
     private Integer balance;
 
-    private String createTime;
+    private LocalDateTime createTime;
 
-    private String updateTime;
+    private LocalDateTime updateTime;
 
     public User1() {
     }
 
-    public User1(Long id, String username, String password, String phone, String info, Integer status, Integer balance, String createTime, String updateTime) {
+    public User1(Long id, String username, String password, String phone, String info, Integer status, Integer balance, LocalDateTime createTime, LocalDateTime updateTime) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -150,7 +152,7 @@ public class User1 {
      * 获取
      * @return createTime
      */
-    public String getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
@@ -158,7 +160,7 @@ public class User1 {
      * 设置
      * @param createTime
      */
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
@@ -166,7 +168,7 @@ public class User1 {
      * 获取
      * @return updateTime
      */
-    public String getUpdateTime() {
+    public LocalDateTime getUpdateTime() {
         return updateTime;
     }
 
@@ -174,7 +176,7 @@ public class User1 {
      * 设置
      * @param updateTime
      */
-    public void setUpdateTime(String updateTime) {
+    public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
     }
 
