@@ -28,7 +28,7 @@
     </environments>
     <mappers>
         <!--sql映射文件-->
-        <mapper resource="com/kxfevr/mapper/User1Mapper.xml"/>
+        <mapper resource="com/kxfevr/mapper/UserMapper.xml"/>
     </mappers>
 
 </configuration>
