@@ -1,4 +1,4 @@
-package Demo1;
+package com.kxfevr;
 
 public class Stu implements Comparable<Stu>{
     private String name;

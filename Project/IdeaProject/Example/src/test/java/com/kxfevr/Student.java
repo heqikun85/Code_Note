@@ -1,4 +1,4 @@
-package Demo1;
+package com.kxfevr;
 
 import java.util.Objects;
 

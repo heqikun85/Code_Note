@@ -1,4 +1,4 @@
-package Demo1;
+package com.kxfevr;
 
 public class ArrayUtil {
     // 私有化构造方法，为了不让外界构建它的对象。

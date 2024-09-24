@@ -1,4 +1,4 @@
-package Demo1;
+package com.kxfevr;
 public class StudentTest {
     public static void main(String[] args){
         // 创建一个学生对象
