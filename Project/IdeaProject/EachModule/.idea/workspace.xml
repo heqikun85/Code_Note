@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="154fe623-b280-4942-a6f1-5c437f27bb92" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../Java note/21. 方法引用.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Java note/21. 方法引用.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/moveSpace/src/test/java/com/kxfevr/movespace/RemoveEmptyLines.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,10 +87,26 @@
       <workItem from="1724905865857" duration="149000" />
       <workItem from="1725332895124" duration="565000" />
       <workItem from="1727167359249" duration="129000" />
+      <workItem from="1728887692761" duration="460000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/moveSpace/src/test/java/com/kxfevr/movespace/RemoveEmptyLines.java</url>
+          <line>7</line>
+          <properties class="RemoveEmptyLines" method="main">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
